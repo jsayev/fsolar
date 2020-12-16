@@ -22,9 +22,7 @@ module.exports = (url, itemCount, itemLimit, page) => {
     }
   }
 
-  if (pageCount === 1) {
-    result.push(`<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>`);
-  } else if (pageCount == page) {
+  if (page == pageCount) {
     result.push(`<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>`);
   } else {
     result.push(`<li class="page-item"><a class="page-link" href="${url}/${+page + 1}">Next</a></li>`);
