@@ -23,17 +23,17 @@ module.exports = function (current) {
   let index = 0;
 
   for (index; index < navLinkNames.length; index++) {
-    let link = navLinkNames[index];
-    let href = link.toLowerCase().replace(" ", "");
+    let linkLabel = navLinkNames[index];
+    let href = `/dashboard/${linkLabel.toLowerCase().replace(" ", "")}`;
 
     navElements.push(
       current
         ? {
-            label: link,
+            label: linkLabel,
             href,
-            active: current === link ? "active" : "",
+            active: current === linkLabel ? "active" : "",
           }
-        : { label: link, href }
+        : { label: linkLabel, href }
     );
   }
 
