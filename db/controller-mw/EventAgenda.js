@@ -10,7 +10,8 @@ module.exports = {
       try {
         if (err) throw err;
 
-        res.json(result);
+        res.locals.eventAgendas = result;
+        next();
       } catch (error) {
         next(error);
       }

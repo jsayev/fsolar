@@ -1,11 +1,11 @@
 const Subscriber = require("../db/controller-mw/Subscriber");
 const isAuthenticated = require("../passport").isAuthenticated;
-const render = require("../render/subscribers");
+const render = require("../render/dashboardSubscribers");
 const makePaginatinLinks = require("../render/paginationLinksMaker");
 
 const router = require("express").Router();
 // URL: ~/dashboard/subscribers
-router.get("/", isAuthenticated(), Subscriber.getInitial, (req, res, next) => {
+router.get("/", isAuthenticated, Subscriber.getInitial, (req, res, next) => {
   res.render(render.view, {
     ...render.options,
     username: req.user.username,
@@ -15,7 +15,7 @@ router.get("/", isAuthenticated(), Subscriber.getInitial, (req, res, next) => {
 });
 
 // URL: ~/dashboard/subscribers/:page
-router.get("/:page", isAuthenticated(), Subscriber.getPartition, (req, res, next) => {
+router.get("/:page", isAuthenticated, Subscriber.getPartition, (req, res, next) => {
   res.render(render.view, {
     ...render.options,
     username: req.user.username,

@@ -10,9 +10,9 @@ require("./passport").initialize(passport);
 
 // client routers
 const indexRouter = require("./routes/index");
+const eventAgendaRouter = require("./routes/eventAgendaRouter");
 const subscribeRouter = require("./routes/subscribe");
 const unsubscribeRouter = require("./routes/unsubscribe");
-const eventAgendaRouter = require("./routes/event-agenda");
 const galleryRouter = require("./routes/gallery");
 const errorHandler = require("./routes/errorHandler");
 // admin routers
@@ -24,6 +24,7 @@ const dashboardPasswordRouter = require("./routes/dashboardPassword");
 const logoutRouter = require("./routes/logout");
 
 const app = express();
+const dashboardEventAgendaRouter = require("./routes/dashboardEventAgenda");
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -43,14 +44,15 @@ app.use(passport.session());
 
 // client routes
 app.use("/", indexRouter);
+app.use("/eventagenda", eventAgendaRouter);
 app.use("/subscribe", subscribeRouter);
 app.use("/unsubscribe", unsubscribeRouter);
-app.use("/event-agenda", eventAgendaRouter);
 app.use("/gallery", galleryRouter);
 // admin routes
 app.use("/dashboard/login", adminLoginRouter);
 app.use("/dashboard/register", adminRegisterRouter);
 app.use("/dashboard/summits", dashboardSummitsRouter);
+app.use("/dashboard/eventagenda", dashboardEventAgendaRouter);
 app.use("/dashboard/subscribers", dashboardSubscribersRouter);
 app.use("/dashboard/password", dashboardPasswordRouter);
 app.use("/logout", logoutRouter);
