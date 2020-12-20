@@ -10,7 +10,7 @@ module.exports = {
       try {
         if (err) throw err;
 
-        res.locals.eventAgendas = result;
+        res.locals.agenda = result[0];
         next();
       } catch (error) {
         next(error);
@@ -19,19 +19,24 @@ module.exports = {
   },
 
   create(req, res, next) {
-    db.query(`insert into event_agenda set summitID=?,fileName=?`, [req.body.summitID, req.file.filename], (err, result) => {
-      try {
-        if (err) throw err;
+    console.log(req.file);
+    db.query(
+      `insert into event_agenda set fileName=?,fileSize=?,uploadDate=?,originalName=?`,
+      [req.file.filename, req.file.size, new Date().toLocaleString(), req.file.originalname.split(".")[0]],
+      (err, result) => {
+        try {
+          if (err) throw err;
 
-        res.json("Event agenda was added successfully!");
-      } catch (error) {
-        fs.unlink(`./uploads/event-agenda/${req.file.filename}`, (err) => {
-          if (err) return console.log(err);
-          console.log("File was removed due to error");
-        });
-        next(error);
+          res.json("Event agenda was uploaded successfully!");
+        } catch (error) {
+          fs.unlink(`./uploads/event-agenda/${req.file.filename}`, (err) => {
+            if (err) return console.log(err);
+            console.log("File was removed due to error");
+          });
+          next(error);
+        }
       }
-    });
+    );
   },
 
   deleteOne(req, res, next) {

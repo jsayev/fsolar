@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
     {{/if}}
-
 </head>
 
 <body>
@@ -28,10 +27,13 @@
         crossorigin="anonymous"></script>
     {{/if}}
 
-    {{#if renderUploadJS}}
-    <script type="module" src="/js/upload.js"></script>
+    {{#if renderUploadAgendaJS}}
+    <script type="module" src="/js/eventAgenda/uploadAgenda.js"></script>
     {{/if}}
 
+    {{#if renderRemoveAgendaJS}}
+    <script type="module" src="/js/eventAgenda/removeAgenda.js"></script>
+    {{/if}}
     {{#if renderPasswordJS}}
     <script type="module" src="/js/password.js"></script>
     {{/if}}

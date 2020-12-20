@@ -1,4 +1,4 @@
-const makeNavLinkOptions = require("./navLinkOptionsMaker");
+const makeNavLinkOptions = require("./helpers/navLinkOptionsMaker");
 
 module.exports = {
   view: "dashboardSummits",

@@ -1,7 +1,7 @@
 const Subscriber = require("../db/controller-mw/Subscriber");
 const isAuthenticated = require("../passport").isAuthenticated;
 const render = require("../render/dashboardSubscribers");
-const makePaginatinLinks = require("../render/paginationLinksMaker");
+const makePaginatinLinks = require("../render/helpers/paginationLinksMaker");
 
 const router = require("express").Router();
 // URL: ~/dashboard/subscribers

@@ -1,9 +1,9 @@
-const makeNavLinkOptions = require("./navLinkOptionsMaker");
+const makeNavLinkOptions = require("./helpers/navLinkOptionsMaker");
 
 module.exports = {
   view: "dashboardPassword",
   options: {
-    title: "Future-Solar Dashboard",
+    title: "Future-Solar Change Password",
     renderDashboardCommons: true,
     renderPasswordJS: true,
     layout: "dashboardLayout",
