@@ -15,8 +15,7 @@ module.exports = {
         if (result.length > 0) throw "Username is already in use!";
 
         db.query(
-          `insert into admins set username=?,password=?`,
-          [req.body.username, bcrypt.hashSync(req.body.password.trim(), 10)],
+          `insert into admins set username="${req.body.username}",password="${bcrypt.hashSync(req.body.password.trim(), 10)}"`,
           (err, result) => {
             try {
               if (err) throw err;
@@ -46,7 +45,7 @@ module.exports = {
     if (req.body.password.length === 0) return next("Empty password is not allowed!");
     if (req.body.password !== req.body.repassword) return next(`Passwords don't match!`);
 
-    db.query(`update admins set password=? where id="${req.user.id}"`, [bcrypt.hashSync(req.body.password, 10)], (err, result) => {
+    db.query(`update admins set password="${bcrypt.hashSync(req.body.password, 10)}" where id="${req.user.id}"`, (err, result) => {
       try {
         if (err) throw err;
 

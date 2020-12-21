@@ -13,15 +13,14 @@ const indexRouter = require("./routes/index");
 const eventAgendaRouter = require("./routes/eventAgendaRouter");
 const subscribeRouter = require("./routes/subscribe");
 const unsubscribeRouter = require("./routes/unsubscribe");
-const galleryRouter = require("./routes/gallery");
 const errorHandler = require("./routes/errorHandler");
-// admin routers
-const adminLoginRouter = require("./routes/dashboardLogin");
-const adminRegisterRouter = require("./routes/dashboardRegister");
+// dashboard routers
+const dashboardLoginRouter = require("./routes/dashboardLogin");
+const dashboardRegisterRouter = require("./routes/dashboardRegister");
 const dashboardSummitsRouter = require("./routes/dashboardSummits");
 const dashboardSubscribersRouter = require("./routes/dashboardSubscribers");
 const dashboardPasswordRouter = require("./routes/dashboardPassword");
-const logoutRouter = require("./routes/logout");
+const dashboardLogoutRouter = require("./routes/dashboardLogout");
 
 const app = express();
 const dashboardEventAgendaRouter = require("./routes/dashboardEventAgenda");
@@ -47,15 +46,14 @@ app.use("/", indexRouter);
 app.use("/eventagenda", eventAgendaRouter);
 app.use("/subscribe", subscribeRouter);
 app.use("/unsubscribe", unsubscribeRouter);
-app.use("/gallery", galleryRouter);
 // admin routes
-app.use("/dashboard/login", adminLoginRouter);
-app.use("/dashboard/register", adminRegisterRouter);
+app.use("/dashboard/login", dashboardLoginRouter);
+app.use("/dashboard/register", dashboardRegisterRouter);
 app.use("/dashboard/summits", dashboardSummitsRouter);
 app.use("/dashboard/eventagenda", dashboardEventAgendaRouter);
 app.use("/dashboard/subscribers", dashboardSubscribersRouter);
 app.use("/dashboard/password", dashboardPasswordRouter);
-app.use("/logout", logoutRouter);
+app.use("/logout", dashboardLogoutRouter);
 // unknown routers
 app.use((req, res, next) => {
   res.status(404);

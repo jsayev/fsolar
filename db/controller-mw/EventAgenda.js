@@ -5,7 +5,7 @@ const fs = require("fs");
 const db = mysql.createConnection(config);
 
 module.exports = {
-  listAll(req, res, next) {
+  selectOne(req, res, next) {
     db.query(`select * from event_agenda`, (err, result) => {
       try {
         if (err) throw err;
@@ -19,10 +19,10 @@ module.exports = {
   },
 
   create(req, res, next) {
-    console.log(req.file);
     db.query(
-      `insert into event_agenda set fileName=?,fileSize=?,uploadDate=?,originalName=?`,
-      [req.file.filename, req.file.size, new Date().toLocaleString(), req.file.originalname.split(".")[0]],
+      `insert into event_agenda set fileName="${req.file.filename}",uploadDate="${new Date().toLocaleString()}",originalName="${
+        req.file.originalname.split(".")[0]
+      }"`,
       (err, result) => {
         try {
           if (err) throw err;
@@ -40,13 +40,13 @@ module.exports = {
   },
 
   deleteOne(req, res, next) {
-    db.query(`select fileName from event_agenda where id=?`, [req.params.id], (err, result) => {
+    db.query(`select fileName from event_agenda where id="${req.params.id}"`, (err, result) => {
       try {
         if (err) throw err;
         if (result.length > 0) {
           let filename = result[0].fileName;
 
-          db.query(`delete from event_agenda where id=?`, [req.params.id], (err, result) => {
+          db.query(`delete from event_agenda where id="${req.params.id}"`, (err, result) => {
             try {
               if (err) throw err;
 
@@ -87,7 +87,7 @@ module.exports = {
             res.json("Removed all event agendas successfully!");
           } catch (error) {
             if (error.syscall && error.syscall === "scandir") return next("Incorrect event agenda directory!");
-            next("Error occured during deleting event agenda files");
+            next("Error occured during deleting event agenda files!");
           }
         });
       } catch (error) {

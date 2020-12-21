@@ -5,7 +5,7 @@ const render = require("../render/dashboardEventAgenda");
 
 const router = require("express").Router();
 // URL: ~/dashboard/eventagenda
-router.get("/", isAuthenticated, EventAgenda.listAll, (req, res, next) => {
+router.get("/", isAuthenticated, EventAgenda.selectOne, (req, res, next) => {
   const agendaFile = res.locals.agenda;
   const renderUploadAgendaJS = !agendaFile;
   const renderRemoveAgendaJS = !renderUploadAgendaJS;

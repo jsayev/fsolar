@@ -47,12 +47,12 @@ module.exports = {
   },
 
   addNew(req, res, next) {
-    db.query(`select * from subscribers where email=?`, [req.body.email], (err, result) => {
+    db.query(`select * from subscribers where email="${req.body.email}"`, (err, result) => {
       try {
         if (err) throw err;
         if (result.length > 0) throw "Email is already subscribed!";
 
-        db.query(`insert into subscribers set email=?,date=?`, [req.body.email, new Date().toLocaleString()], (err, result) => {
+        db.query(`insert into subscribers set email="${req.body.email}",date="${new Date().toLocaleString()}"`, (err, result) => {
           if (err) throw err;
 
           res.json("Subscription success!");
@@ -64,7 +64,7 @@ module.exports = {
   },
 
   remove(req, res, next) {
-    db.query(`delete from subscribers where email=?`, [req.params.email], (err, result) => {
+    db.query(`delete from subscribers where email="${req.params.email}"`, (err, result) => {
       try {
         if (err) throw err;
         if (result.affectedRows === 0) throw "Incorrect email!";
