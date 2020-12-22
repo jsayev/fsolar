@@ -18,12 +18,12 @@ const errorHandler = require("./routes/errorHandler");
 const dashboardLoginRouter = require("./routes/dashboardLogin");
 const dashboardRegisterRouter = require("./routes/dashboardRegister");
 const dashboardSummitsRouter = require("./routes/dashboardSummits");
+const dashboardEventAgendaRouter = require("./routes/dashboardEventAgenda");
 const dashboardSubscribersRouter = require("./routes/dashboardSubscribers");
 const dashboardPasswordRouter = require("./routes/dashboardPassword");
 const dashboardLogoutRouter = require("./routes/dashboardLogout");
 
 const app = express();
-const dashboardEventAgendaRouter = require("./routes/dashboardEventAgenda");
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");

@@ -5,7 +5,7 @@ const fs = require("fs");
 const db = mysql.createConnection(config);
 
 module.exports = {
-  selectOne(req, res, next) {
+  pickAll(req, res, next) {
     db.query(`select * from summits`, (err, result) => {
       try {
         if (err) throw err;
@@ -19,8 +19,7 @@ module.exports = {
   },
 
   create(req, res, next) {
-    // console.log(req.body);
-    return res.json(req.body);
+    return res.json({ files: req.files, body: req.body });
     db.query(
       `insert into summits set title="${req.body.title}",date="${req.body.date}",edition="${req.body.edition}",location="${req.body.location}",about="${req.body.about}",videoLink="${req.body.videoLink}"`,
       (err, result) => {

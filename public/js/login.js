@@ -1,9 +1,9 @@
-import endpoint from "/js/modules/endpoints.js";
+import endpoints from "/js/modules/endpoints.js";
 import renderResponseAlert from "/js/modules/renderResponseAlert.js";
 
 $("form").submit((e) => {
   e.preventDefault();
-  fetch(endpoint.login, {
+  fetch(endpoints.login, {
     method: "post",
     body: JSON.stringify({
       username: e.target.username.value,

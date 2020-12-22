@@ -20,6 +20,10 @@ const storage = multer.diskStorage({
  *
  * @param {String} fieldname Value of file input name attribute
  */
-module.exports = (fieldname) => {
+module.exports.single = (fieldname) => {
   return multer({ storage }).single(fieldname);
+};
+
+module.exports.array = (fieldname) => {
+  return multer({ storage }).array(fieldname);
 };

@@ -5,7 +5,7 @@ const fs = require("fs");
 const db = mysql.createConnection(config);
 
 module.exports = {
-  selectOne(req, res, next) {
+  pickAll(req, res, next) {
     db.query(`select * from event_agenda`, (err, result) => {
       try {
         if (err) throw err;

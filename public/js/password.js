@@ -1,9 +1,9 @@
-import endpoint from "/js/modules/endpoints.js";
+import endpoints from "/js/modules/endpoints.js";
 import renderResponseAlert from "/js/modules/renderResponseAlert.js";
 
 $("#changePasswordForm").submit(function (e) {
   e.preventDefault();
-  fetch(endpoint.password, {
+  fetch(endpoints.password, {
     method: "put",
     body: JSON.stringify({
       password: e.target.password.value.trim(),

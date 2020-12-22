@@ -27,6 +27,13 @@
         crossorigin="anonymous"></script>
     {{/if}}
 
+    {{#if renderCreateSummitJS}}
+    <script type="module" src="/js/summit/createSummit.js"></script>
+    {{/if}}
+    {{#if renderRemoveSummitJS}}
+    <script type="module" src="/js/summit/removeSummit.js"></script>
+    {{/if}}
+
     {{#if renderUploadAgendaJS}}
     <script type="module" src="/js/eventAgenda/uploadAgenda.js"></script>
     {{/if}}

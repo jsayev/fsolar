@@ -5,4 +5,5 @@ export default {
   register: `${domain}/dashboard/register`,
   password: `${domain}/dashboard/password`,
   agenda: `${domain}/dashboard/eventagenda`,
+  summit: `${domain}/dashboard/summits`,
 };

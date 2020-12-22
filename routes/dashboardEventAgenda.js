@@ -5,7 +5,7 @@ const render = require("../render/dashboardEventAgenda");
 
 const router = require("express").Router();
 // URL: ~/dashboard/eventagenda
-router.get("/", isAuthenticated, EventAgenda.selectOne, (req, res, next) => {
+router.get("/", isAuthenticated, EventAgenda.pickAll, (req, res, next) => {
   const agendaFile = res.locals.agenda;
   const renderUploadAgendaJS = !agendaFile;
   const renderRemoveAgendaJS = !renderUploadAgendaJS;
@@ -14,7 +14,7 @@ router.get("/", isAuthenticated, EventAgenda.selectOne, (req, res, next) => {
 });
 
 // URL: ~/dashboard/eventagenda
-router.post("/", isAuthenticated, uploader("eagenda"), EventAgenda.create);
+router.post("/", isAuthenticated, uploader.single("eagenda"), EventAgenda.create);
 
 // URL: ~/dashboard/eventagenda/:id
 router.delete("/:id", isAuthenticated, EventAgenda.deleteOne);
