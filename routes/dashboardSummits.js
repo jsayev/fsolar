@@ -14,9 +14,9 @@ router.get("/", isAuthenticated, Summit.pickAll, (req, res, next) => {
 });
 
 // URL: ~/dashboard/summits
-router.post("/", isAuthenticated, uploader.array("files"), Summit.create);
+router.post("/", isAuthenticated, uploader.for("summit"), Summit.create);
 
 // URL: ~/dashboard/summits
-router.delete("/:id", isAuthenticated, Summit.deleteOne);
+router.delete("/", isAuthenticated, Summit.delete);
 
 module.exports = router;

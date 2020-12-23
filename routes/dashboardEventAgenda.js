@@ -14,12 +14,9 @@ router.get("/", isAuthenticated, EventAgenda.pickAll, (req, res, next) => {
 });
 
 // URL: ~/dashboard/eventagenda
-router.post("/", isAuthenticated, uploader.single("eagenda"), EventAgenda.create);
+router.post("/", isAuthenticated, uploader.for("event agenda"), EventAgenda.create);
 
 // URL: ~/dashboard/eventagenda/:id
-router.delete("/:id", isAuthenticated, EventAgenda.deleteOne);
-
-// URL: ~/dashboard/eventagenda/all
-router.delete("/all", isAuthenticated, EventAgenda.deleteAll);
+router.delete("/", isAuthenticated, EventAgenda.delete);
 
 module.exports = router;

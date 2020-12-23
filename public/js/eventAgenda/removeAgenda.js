@@ -4,7 +4,7 @@ import renderResponseAlert from "/js/modules/renderResponseAlert.js";
 const deleteBtn = document.getElementById("deleteBtn");
 
 deleteBtn.addEventListener("click", function () {
-  fetch(`${endpoints.agenda}/${this.dataset.targetagenda}`, {
+  fetch(endpoints.agenda, {
     method: "delete",
   })
     .then((res) => res.json())

@@ -1,4 +1,5 @@
 import endpoints from "/js/modules/endpoints.js";
+import renderResponseAlert from "/js/modules/renderResponseAlert.js";
 
 const form = document.querySelector("form");
 const addBtn = document.getElementById("addBtn");
@@ -9,9 +10,10 @@ form.addEventListener("submit", (e) => {
   const formData = new FormData();
 
   for (const elem of e.target) {
-    if (elem.type != "submit") {
-      // console.log(elem.name);
-      formData.append(elem.name, elem.value);
+    if (elem.name.includes("file") && elem.files[0]) {
+      formData.append("summitBgFiles", elem.files[0]);
+    } else if (elem.name) {
+      formData.append(`${elem.name}`, elem.value);
     }
   }
 
@@ -20,7 +22,11 @@ form.addEventListener("submit", (e) => {
     body: formData,
   })
     .then((res) => res.json())
-    .then(console.log);
+    .then((res) => {
+      if (res.error) return renderResponseAlert(res, "response");
+      location.href = "/dashboard/summits";
+    })
+    .catch(console.log);
 });
 
 addBtn.addEventListener("click", function () {
@@ -31,8 +37,8 @@ addBtn.addEventListener("click", function () {
   newFormGroup.className = "form-group";
 
   const newField = `
-  <label for="${name}">Background:</label>
-  <input type="file" class="form-control" id="${name}" name="${name}">
+  <label for="${name}"><span style="color:red">*</span>Background:</label>
+  <input type="file" class="form-control" id="${name}" name="${name}" required>
   <button type="button" class="btn btn-sm btn-danger float-right mt-1" data-removeBtn="${name}_btn">Remove</button>
   `;
   newFormGroup.innerHTML = newField;

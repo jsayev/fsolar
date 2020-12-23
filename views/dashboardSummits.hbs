@@ -1,46 +1,78 @@
 {{!-- --}}
 {{> dashboardHeader}}
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         {{#if summit}}
-        <h1>we have a summit here</h1>
+        <div class="col-6 mx-auto">
+            <div id="response"></div>
+        </div>
+        <div class="col-12">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Edition</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#with summit}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>{{edition}}</td>
+                        <td>{{date}}</td>
+                        <td>
+                            <button class="btn btn-danger" id="deleteBtn">Delete</button>
+                        </td>
+                    </tr>
+                    {{/with}}
+                </tbody>
+            </table>
+        </div>
         {{else}}
-        <div class="col-8 mx-auto">
+        <div class="col-6 offset-3">
             <h3 class="text-center">New Summit</h3>
             <hr>
+        </div>
+        <div class="col-4 offset-4">
+            <div id="response"></div>
+        </div>
+        <div class="col-6 mx-auto">
             <form>
                 <div class="form-group">
-                    <label for="title">Title:</label>
+                    <label for="title"><span style="color:red">*</span>Title:</label>
                     <input type="text" class="form-control" id="title" name="title"
-                        placeholder="ex: Future Solar Energy Summit">
+                        placeholder="ex: Future Solar Energy Summit" required>
                 </div>
                 <div class="form-group">
-                    <label for="edition">Edition:</label>
-                    <input type="text" class="form-control" id="edition" name="edition" placeholder="ex: 2ND Edition">
+                    <label for="edition"><span style="color:red">*</span>Edition:</label>
+                    <input type="text" class="form-control" id="edition" name="edition" placeholder="ex: 2ND Edition"
+                        required>
                 </div>
                 <div class="form-group">
-                    <label for="location">Location:</label>
+                    <label for="location"><span style="color:red">*</span>Location:</label>
                     <input type="text" class="form-control" id="location" name="location"
-                        placeholder="ex: Germany Hamburg">
+                        placeholder="ex: Germany Hamburg" required>
                 </div>
                 <div class="form-group">
-                    <label for="date">Date:</label>
-                    <input type="date" class="form-control" id="date" name="date">
+                    <label for="date"><span style="color:red">*</span>Date:</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
                 </div>
                 <div class="form-group">
-                    <label for="about">About:</label>
-                    <textarea class="form-control" id="about" name="about" rows="4"
-                        placeholder="About summit"></textarea>
+                    <label for="about"><span style="color:red">*</span>About:</label>
+                    <textarea class="form-control" id="about" name="about" rows="4" placeholder="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="videoLink">Video Link:</label>
+                    <label for="videoLink"><span style="color:red">*</span>Video link:</label>
                     <input type="text" class="form-control" id="videoLink" name="videoLink"
-                        placeholder="ex: https://www.youtube.com/watch?v=9w7ZJphWi6o">
+                        placeholder="ex: https://www.youtube.com/watch?v=9w7ZJphWi6o" required>
                 </div>
                 <div class="form-group">
-                    <label for="file">Background:</label>
-                    <input type="file" class="form-control" id="file" name="file">
+                    <label for="file"><span style="color:red">*</span>Background:</label>
+                    <input type="file" class="form-control" id="file" name="file" required>
                 </div>
                 <button type="button" class="btn btn-warning" id="addBtn">+ more background</button>
                 <div class="form-group">
