@@ -11,7 +11,12 @@ module.exports = {
         if (err) throw err;
 
         res.locals.summit = result[0];
-        next();
+
+        db.query(`select * from summit_files`, (err, result) => {
+          if (err) console.log(err);
+          res.locals.summitFiles = result;
+          next();
+        });
       } catch (error) {
         next(error);
       }
@@ -27,7 +32,7 @@ module.exports = {
 
           if (req.files.length > 0) {
             req.files.forEach((file) => {
-              db.query(`insert into summit_files set summitID=${newSummit.insertId},fileName="${file.filename}"`);
+              db.query(`insert into summit_files set summitID=${newSummit.insertId},fileName="${file.filename}",originalName="${file.originalname}"`);
             });
           }
 

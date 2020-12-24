@@ -14,6 +14,7 @@
                         <th scope="col">Title</th>
                         <th scope="col">Edition</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Location</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -23,13 +24,43 @@
                         <td>{{title}}</td>
                         <td>{{edition}}</td>
                         <td>{{date}}</td>
+                        <td>{{location}}</td>
                         <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewSummit">
+                                View
+                            </button>
                             <button class="btn btn-danger" id="deleteBtn">Delete</button>
                         </td>
                     </tr>
                     {{/with}}
                 </tbody>
             </table>
+            {{#with summit}}
+            <div class="modal fade" id="viewSummit" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Edition: {{edition}}</h6>
+                            <h6>Date: {{date}}</h6>
+                            <h6>Location: {{location}}</h6>
+                            <h6>About:</h6>
+                            <p>{{about}}</p>
+                            <h6>Video Link: <a href="{{videoLink}}" target="_blank">{{videoLink}}</a></h6>
+                            <h6>Background files:</h6>
+                            {{#each summitFiles}}
+                            <p class="m-0">{{originalName}}</p>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/with}}
         </div>
         {{else}}
         <div class="col-6 offset-3">

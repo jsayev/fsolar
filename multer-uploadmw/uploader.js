@@ -1,5 +1,6 @@
 const multer = require("multer");
-const randomGenerator = require("./randomGenerator");
+const randomGenerator = require("../helpers/randomGenerator");
+const slicePart = require("../helpers/slicePart");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -14,10 +15,7 @@ const storage = multer.diskStorage({
     }
   },
   filename: (req, file, cb) => {
-    let slices = file.originalname.split(".");
-    let fileExtension = slices[slices.length - 1];
-
-    cb(null, `${randomGenerator(10)}.${fileExtension}`);
+    cb(null, `${randomGenerator(10)}.${slicePart("ext").from(file.originalname)}`);
   },
 });
 

@@ -1,9 +1,9 @@
 const EventAgenda = require("../db/controller-mw/EventAgenda");
 const isAuthenticated = require("../passport").isAuthenticated;
-const uploader = require("../mwares/uploader");
+const uploader = require("../multer-uploadmw/uploader");
 const render = require("../render/dashboardEventAgenda");
-
 const router = require("express").Router();
+
 // URL: ~/dashboard/eventagenda
 router.get("/", isAuthenticated, EventAgenda.pickAll, (req, res, next) => {
   const agendaFile = res.locals.agenda;

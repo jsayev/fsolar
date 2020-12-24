@@ -4,9 +4,12 @@ const logger = require("morgan");
 const passport = require("passport");
 const expSession = require("express-session");
 const hbs = require("hbs");
-
 require("dotenv").config();
 require("./passport").initialize(passport);
+
+// handlebars start
+hbs.registerPartials(path.join(__dirname, "views/partials"));
+// handlebars end
 
 // client routers
 const indexRouter = require("./routes/index");
@@ -24,7 +27,6 @@ const dashboardPasswordRouter = require("./routes/dashboardPassword");
 const dashboardLogoutRouter = require("./routes/dashboardLogout");
 
 const app = express();
-hbs.registerPartials(path.join(__dirname, "views/partials"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
