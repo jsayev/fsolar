@@ -6,4 +6,5 @@ export default {
   password: `${domain}/dashboard/password`,
   agenda: `${domain}/dashboard/eventagenda`,
   summit: `${domain}/dashboard/summits`,
+  attendee: `${domain}/dashboard/attendees`,
 };

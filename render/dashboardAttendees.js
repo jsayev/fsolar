@@ -1,11 +1,11 @@
 const makeNavLinkOptions = require("./helpers/navLinkOptionsMaker");
 
 module.exports = {
-  view: "dashboardSubscribers",
+  view: "dashboardAttendees",
   options: {
-    title: "Future-Solar Subscribers",
+    title: "Future-Solar Attendees",
     layout: "dashboardLayout",
     renderDashboardCommons: true,
-    navLinkOptions: makeNavLinkOptions("Subscribers"),
+    navLinkOptions: makeNavLinkOptions("Attendees"),
   },
 };

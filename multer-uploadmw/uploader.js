@@ -10,6 +10,10 @@ const storage = multer.diskStorage({
         break;
       case "summitBgFiles":
         cb(null, `./uploads/summit`);
+        break;
+      case "attendeeLogo":
+        cb(null, `./uploads/attendees`);
+        break;
       default:
         break;
     }
@@ -21,15 +25,9 @@ const storage = multer.diskStorage({
 
 /**
  *
- * @param {String} fieldname formdata property name for file (single)
+ * @param {String} fieldname formdata property name for file(s)
  */
 module.exports.for = (fieldname) => {
-  switch (fieldname) {
-    case "event agenda":
-      return multer({ storage }).single("eagenda");
-    case "summit":
-      return multer({ storage }).array("summitBgFiles");
-    default:
-      break;
-  }
+  if (fieldname[fieldname.length - 1] === "s") return multer({ storage }).array(fieldname);
+  return multer({ storage }).single(fieldname);
 };

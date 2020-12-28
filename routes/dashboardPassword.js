@@ -1,5 +1,5 @@
 const render = require("../render/dashboardPassword");
-const isAuthenticated = require("../passport").isAuthenticated;
+const { isAuthenticated } = require("../passport");
 const Admin = require("../db/controller-mw/Admin");
 const router = require("express").Router();
 

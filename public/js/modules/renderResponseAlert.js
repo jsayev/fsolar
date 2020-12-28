@@ -9,7 +9,7 @@ export default function renderResponseAlert(fetchRes, targetContainerID, formIts
           </button>
         </div>`;
     let alertContainer = document.getElementById(targetContainerID);
-    return (alertContainer.innerHTML = alert);
+    alertContainer.innerHTML = alert;
   } else {
     let alert = `
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,7 +20,7 @@ export default function renderResponseAlert(fetchRes, targetContainerID, formIts
         </div>`;
     let alertContainer = document.getElementById(targetContainerID);
     alertContainer.innerHTML = alert;
-  }
 
-  if (formItself) formItself.reset();
+    if (formItself) formItself.reset();
+  }
 }

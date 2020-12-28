@@ -1,5 +1,5 @@
 const render = require("../render/dashboardSummits");
-const isAuthenticated = require("../passport").isAuthenticated;
+const { isAuthenticated } = require("../passport");
 const Summit = require("../db/controller-mw/Summit");
 const uploader = require("../multer-uploadmw/uploader");
 const dateformat = require("dateformat");
@@ -19,7 +19,7 @@ router.get("/", isAuthenticated, Summit.pickAll, (req, res, next) => {
 });
 
 // URL: ~/dashboard/summits
-router.post("/", isAuthenticated, uploader.for("summit"), Summit.create);
+router.post("/", isAuthenticated, uploader.for("summitBgFiles"), Summit.create);
 
 // URL: ~/dashboard/summits
 router.delete("/", isAuthenticated, Summit.delete);

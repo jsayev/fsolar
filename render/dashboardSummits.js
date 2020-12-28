@@ -4,8 +4,8 @@ module.exports = {
   view: "dashboardSummits",
   options: {
     title: "Future-Solar Summits",
-    renderDashboardCommons: true,
     layout: "dashboardLayout",
+    renderDashboardCommons: true,
     navLinkOptions: makeNavLinkOptions("Summits"),
   },
 };

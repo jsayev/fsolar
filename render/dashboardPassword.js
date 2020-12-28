@@ -4,9 +4,9 @@ module.exports = {
   view: "dashboardPassword",
   options: {
     title: "Future-Solar Change Password",
+    layout: "dashboardLayout",
     renderDashboardCommons: true,
     renderPasswordJS: true,
-    layout: "dashboardLayout",
     navLinkOptions: makeNavLinkOptions(),
     active: "active",
   },

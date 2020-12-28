@@ -1,7 +1,7 @@
 const Subscriber = require("../db/controller-mw/Subscriber");
-const isAuthenticated = require("../passport").isAuthenticated;
+const { isAuthenticated } = require("../passport");
 const render = require("../render/dashboardSubscribers");
-const makePaginatinLinks = require("../render/helpers/paginationLinksMaker");
+const makePaginationLinks = require("../render/helpers/paginationLinksMaker");
 const router = require("express").Router();
 
 // URL: ~/dashboard/subscribers
@@ -10,7 +10,7 @@ router.get("/", isAuthenticated, Subscriber.getInitial, (req, res, next) => {
     ...render.options,
     username: req.user.username,
     subscribers: res.locals.subscribers,
-    paginationLinks: makePaginatinLinks("/dashboard/subscribers", res.locals.subscriberCount, 10, 1),
+    paginationLinks: makePaginationLinks("/dashboard/subscribers", res.locals.subscriberCount, 10, 1),
   });
 });
 
@@ -20,7 +20,7 @@ router.get("/:page", isAuthenticated, Subscriber.getPartition, (req, res, next) 
     ...render.options,
     username: req.user.username,
     subscribers: res.locals.subscribers,
-    paginationLinks: makePaginatinLinks("/dashboard/subscribers", res.locals.subscriberCount, 10, req.params.page),
+    paginationLinks: makePaginationLinks("/dashboard/subscribers", res.locals.subscriberCount, 10, req.params.page),
   });
 });
 

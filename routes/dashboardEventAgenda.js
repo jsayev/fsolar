@@ -1,5 +1,5 @@
 const EventAgenda = require("../db/controller-mw/EventAgenda");
-const isAuthenticated = require("../passport").isAuthenticated;
+const { isAuthenticated } = require("../passport");
 const uploader = require("../multer-uploadmw/uploader");
 const render = require("../render/dashboardEventAgenda");
 const router = require("express").Router();
@@ -14,7 +14,7 @@ router.get("/", isAuthenticated, EventAgenda.pickAll, (req, res, next) => {
 });
 
 // URL: ~/dashboard/eventagenda
-router.post("/", isAuthenticated, uploader.for("event agenda"), EventAgenda.create);
+router.post("/", isAuthenticated, uploader.for("eagenda"), EventAgenda.create);
 
 // URL: ~/dashboard/eventagenda/:id
 router.delete("/", isAuthenticated, EventAgenda.delete);
