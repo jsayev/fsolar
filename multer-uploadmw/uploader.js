@@ -6,13 +6,22 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     switch (file.fieldname) {
       case "eagenda":
-        cb(null, `./uploads/event-agenda`);
+        cb(null, `./public/uploads/eventAgenda`);
         break;
       case "summitBgFiles":
-        cb(null, `./uploads/summit`);
+        cb(null, `./public/uploads/summit`);
         break;
       case "attendeeLogo":
-        cb(null, `./uploads/attendees`);
+        cb(null, `./public/uploads/attendees`);
+        break;
+      case "exhibitorLogo":
+        cb(null, `./public/uploads/exhibitors`);
+        break;
+      case "partnerLogo":
+        cb(null, `./public/uploads/partners`);
+        break;
+      case "supportOrganizationLogo":
+        cb(null, `./public/uploads/supportOrganizations`);
         break;
       default:
         break;

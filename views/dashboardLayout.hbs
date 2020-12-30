@@ -41,6 +41,27 @@
     <script type="module" src="/js/attendee/remove.js"></script>
     {{/if}}
 
+    {{#if renderCreateExhibitorJS}}
+    <script type="module" src="/js/exhibitor/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveExhibitorJS}}
+    <script type="module" src="/js/exhibitor/remove.js"></script>
+    {{/if}}
+
+    {{#if renderCreatePartnerJS}}
+    <script type="module" src="/js/partner/create.js"></script>
+    {{/if}}
+    {{#if renderRemovePartnerJS}}
+    <script type="module" src="/js/partner/remove.js"></script>
+    {{/if}}
+
+    {{#if renderCreateSupportOrganizationJS}}
+    <script type="module" src="/js/supportOrganization/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveSupportOrganizationJS}}
+    <script type="module" src="/js/supportOrganization/remove.js"></script>
+    {{/if}}
+
     {{#if renderUploadAgendaJS}}
     <script type="module" src="/js/eventAgenda/upload.js"></script>
     {{/if}}

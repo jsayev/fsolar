@@ -1,5 +1,5 @@
 const login = require("../passport").login;
-const render = require("../render/login");
+const render = require("../render/makeRenderOpts")("Login");
 const router = require("express").Router();
 
 // URL: ~/dashboard/login
@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
       ...render.options,
     });
   }
-  res.redirect("/dashboard/summits");
+  res.redirect("/dashboard/summit");
 });
 
 //URL: ~/dashboard/login

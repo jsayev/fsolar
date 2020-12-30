@@ -4,22 +4,22 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#attendeeModal">
-                + New attendee
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#partnerModal">
+                + New partner
             </button>
             <hr>
-            <div class="modal fade" id="attendeeModal" tabindex="-1">
+            <div class="modal fade" id="partnerModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">New attendee</h5>
+                            <h5 class="modal-title">New partner</h5>
                             <button type="button" class="close" data-dismiss="modal">
                                 <span>&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div id="response"></div>
-                            <form id="attendeeForm">
+                            <form id="partnerForm">
                                 <div class="form-group">
                                     <label for="title"><span style="color:red">*</span>Title:</label>
                                     <input type="text" class="form-control" id="title" name="title"
@@ -32,15 +32,15 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" form="attendeeForm" class="btn btn-success">Create</button>
+                            <button type="submit" form="partnerForm" class="btn btn-success">Create</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {{#if attendees}}
+        {{#if partners}}
         <div class="col-12">
-            <h2 class="text-center">Attendees</h2>
+            <h2 class="text-center">Partners</h2>
         </div>
         <div class="col-4 offset-4">
             <div id="response"></div>
@@ -56,15 +56,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each attendees}}
+                    {{#each partners}}
                     {{#with this}}
                     <tr>
                         <th scope="row">{{id}}</th>
                         <td>{{title}}</td>
-                        <td><img src="/uploads/attendees/{{logoFilename}}" alt="{{logoFilename}}" width="50"
+                        <td><img src="/uploads/partners/{{logoFilename}}" alt="{{logoFilename}}" width="50"
                                 height="50" /></td>
-                        <td><button data-targetId="{{id}}" class="btn btn-danger delBtn">Remove</button>
-                        </td>
+                        <td><button data-targetId="{{id}}" class="btn btn-danger delBtn">Remove</button></td>
                     </tr>
                     {{/with}}
                     {{/each}}
@@ -84,7 +83,7 @@
         </div>
         {{else}}
         <div class="col-12">
-            <p class="text-center">No attendees yet.</p>
+            <p class="text-center">No partners yet.</p>
         </div>
         {{/if}}
     </div>

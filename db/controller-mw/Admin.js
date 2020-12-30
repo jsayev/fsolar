@@ -19,6 +19,7 @@ module.exports = {
           (err, result) => {
             try {
               if (err) throw err;
+              
               res.json("Registered successfully!");
             } catch (error) {
               next(error);

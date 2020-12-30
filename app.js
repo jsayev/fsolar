@@ -21,10 +21,13 @@ const errorHandler = require("./routes/errorHandler");
 // dashboard routers
 const dashboardLoginRouter = require("./routes/dashboardLogin");
 const dashboardRegisterRouter = require("./routes/dashboardRegister");
-const dashboardSummitsRouter = require("./routes/dashboardSummits");
+const dashboardSummitRouter = require("./routes/dashboardSummit");
 const dashboardEventAgendaRouter = require("./routes/dashboardEventAgenda");
 const dashboardSubscribersRouter = require("./routes/dashboardSubscribers");
 const dashboardAttendeesRouter = require("./routes/dashboardAttendees");
+const dashboardExhibitorsRouter = require("./routes/dashboardExhibitors");
+const dashboardPartnersRouter = require("./routes/dashboardPartners");
+const dashboardSupportOrganizationsRouter = require("./routes/dashboardSupportOrganizations");
 const dashboardPasswordRouter = require("./routes/dashboardPassword");
 const dashboardLogoutRouter = require("./routes/dashboardLogout");
 
@@ -55,10 +58,13 @@ app.use("/unsubscribe", unsubscribeRouter);
 // admin routes
 app.use("/dashboard/login", dashboardLoginRouter);
 app.use("/dashboard/register", dashboardRegisterRouter);
-app.use("/dashboard/summits", dashboardSummitsRouter);
+app.use("/dashboard/summit", dashboardSummitRouter);
 app.use("/dashboard/eventagenda", dashboardEventAgendaRouter);
 app.use("/dashboard/subscribers", dashboardSubscribersRouter);
 app.use("/dashboard/attendees", dashboardAttendeesRouter);
+app.use("/dashboard/exhibitors", dashboardExhibitorsRouter);
+app.use("/dashboard/partners", dashboardPartnersRouter);
+app.use("/dashboard/supportorganizations", dashboardSupportOrganizationsRouter);
 app.use("/dashboard/password", dashboardPasswordRouter);
 app.use("/logout", dashboardLogoutRouter);
 

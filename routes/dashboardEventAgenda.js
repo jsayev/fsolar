@@ -1,16 +1,17 @@
 const EventAgenda = require("../db/controller-mw/EventAgenda");
 const { isAuthenticated } = require("../passport");
 const uploader = require("../multer-uploadmw/uploader");
-const render = require("../render/dashboardEventAgenda");
+const render = require("../render/makeRenderOpts")("EventAgenda");
+
 const router = require("express").Router();
 
 // URL: ~/dashboard/eventagenda
 router.get("/", isAuthenticated, EventAgenda.pickAll, (req, res, next) => {
-  const agendaFile = res.locals.agenda;
-  const renderUploadAgendaJS = !agendaFile;
+  const { agenda } = res.locals;
+  const renderUploadAgendaJS = !agenda;
   const renderRemoveAgendaJS = !renderUploadAgendaJS;
 
-  res.render(render.view, { ...render.options, agendaFile, renderRemoveAgendaJS, renderUploadAgendaJS, username: req.user.username });
+  res.render(render.view, { ...render.options, agenda, renderRemoveAgendaJS, renderUploadAgendaJS, username: req.user.username });
 });
 
 // URL: ~/dashboard/eventagenda

@@ -16,7 +16,7 @@ $("form").submit((e) => {
     .then((res) => res.json())
     .then((res) => {
       renderResponseAlert(res, "response");
-      if (!res.error) location.href = "/dashboard/summits";
+      if (!res.error) location.href = "/dashboard/summit";
     })
     .catch(console.log);
 });

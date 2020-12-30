@@ -11,9 +11,9 @@ module.exports = {
         if (err) throw err;
 
         res.locals.summit = result[0];
-
         db.query(`select * from summit_files`, (err, result) => {
           if (err) console.log(err);
+          
           res.locals.summitFiles = result;
           next();
         });
@@ -55,12 +55,12 @@ module.exports = {
               if (err) throw err;
 
               if (result.affectedRows > 0) {
-                fs.readdir(`./uploads/summit`, (err, fileNames) => {
+                fs.readdir(`./public/uploads/summit`, (err, fileNames) => {
                   if (err) return console.log(err);
 
                   fileNames.forEach((name) => {
                     if (name != ".gitkeep") {
-                      fs.unlink(`./uploads/summit/${name}`, (err) => {
+                      fs.unlink(`./public/uploads/summit/${name}`, (err) => {
                         if (err) console.log(err);
                       });
                     }

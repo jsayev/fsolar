@@ -24,7 +24,7 @@ form.addEventListener("submit", (e) => {
     .then((res) => res.json())
     .then((res) => {
       if (res.error) return renderResponseAlert(res, "response");
-      location.href = "/dashboard/summits";
+      location.href = "/dashboard/summit";
     })
     .catch(console.log);
 });

@@ -1,5 +1,5 @@
 const Admin = require("../db/controller-mw/Admin");
-const render = require("../render/register");
+const render = require("../render/makeRenderOpts")("Register");
 const router = require("express").Router();
 
 // URL: /dashboard/register
@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
       ...render.options,
     });
   }
-  res.redirect("/dashboard/summits");
+  res.redirect("/dashboard/summit");
 });
 
 // URL: /dashboard/register

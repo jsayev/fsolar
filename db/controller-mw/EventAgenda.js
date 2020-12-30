@@ -29,8 +29,9 @@ module.exports = {
 
           res.json("Event agenda was uploaded successfully!");
         } catch (error) {
-          fs.unlink(`./uploads/event-agenda/${req.file.filename}`, (err) => {
+          fs.unlink(`./public/uploads/eventAgenda/${req.file.filename}`, (err) => {
             if (err) return console.log(err);
+            
             console.log("File was removed due to error");
           });
           next(error);
@@ -44,12 +45,12 @@ module.exports = {
       try {
         if (err) throw err;
 
-        fs.readdir(`./uploads/event-agenda`, (err, fileNames) => {
+        fs.readdir(`./public/uploads/eventAgenda`, (err, fileNames) => {
           if (err) return console.log(err);
 
           fileNames.forEach((name) => {
             if (name != ".gitkeep") {
-              fs.unlink(`./uploads/event-agenda/${name}`, (err) => {
+              fs.unlink(`./public/uploads/eventAgenda/${name}`, (err) => {
                 if (err) console.log(err);
               });
             }

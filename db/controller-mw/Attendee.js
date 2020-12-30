@@ -35,6 +35,7 @@ module.exports = {
         db.query(`select count(*) as count from attendees`, (err, result) => {
           try {
             if (err) throw err;
+
             res.locals.attendeeCount = result[0].count;
             next();
           } catch (error) {
@@ -71,8 +72,8 @@ module.exports = {
             try {
               if (err) throw err;
 
-              fs.unlink(`./uploads/attendees/${logoFilename}`, (err) => {
-                if (err) return console.log("Error during attendee removal!");
+              fs.unlink(`./public/uploads/attendees/${logoFilename}`, (err) => {
+                if (err) return console.log("Error during attendee logo removal!");
                 console.log("Removed attendee logo successfully!");
               });
 

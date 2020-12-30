@@ -1,7 +1,7 @@
 const { isAuthenticated } = require("../passport");
 const uploader = require("../multer-uploadmw/uploader");
 const Attendee = require("../db/controller-mw/Attendee");
-const render = require("../render/dashboardAttendees");
+const render = require("../render/makeRenderOpts")("Attendees");
 const makePaginationLinks = require("../render/helpers/paginationLinksMaker");
 
 const router = require("express").Router();

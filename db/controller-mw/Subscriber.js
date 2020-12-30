@@ -34,6 +34,7 @@ module.exports = {
         db.query(`select count(*) as count from subscribers`, (err, result) => {
           try {
             if (err) throw err;
+
             res.locals.subscriberCount = result[0].count;
             next();
           } catch (error) {
@@ -49,7 +50,7 @@ module.exports = {
   addNew(req, res, next) {
     db.query(`select * from subscribers where email="${req.body.email}"`, (err, result) => {
       try {
-        if (err) throw err;
+        if (err) throw err;        
         if (result.length > 0) throw "Email is already subscribed!";
 
         db.query(`insert into subscribers set email="${req.body.email}",date="${new Date().toLocaleString()}"`, (err, result) => {
