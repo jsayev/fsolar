@@ -54,9 +54,7 @@ module.exports.login = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports.isAuthenticated = () => {
-  return (req, res, next) => {
-    if (req.isAuthenticated()) return next();
-    res.redirect("/dashboard-login");
-  };
+module.exports.isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) return next();
+  res.redirect("/dashboard/login");
 };

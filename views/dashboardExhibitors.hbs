@@ -1,0 +1,92 @@
+{{!-- --}}
+{{> dashboardHeader}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exhibitorModal">
+                + New exhibitor
+            </button>
+            <hr>
+            <div class="modal fade" id="exhibitorModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">New exhibitor</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="response"></div>
+                            <form id="exhibitorForm">
+                                <div class="form-group">
+                                    <label for="title"><span style="color:red">*</span>Title:</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        placeholder="ex: Title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="logo"><span style="color:red">*</span>Logo:</label>
+                                    <input type="file" class="form-control" id="logo" name="logo" required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" form="exhibitorForm" class="btn btn-success">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if exhibitors}}
+        <div class="col-12">
+            <h2 class="text-center">Exhibitors</h2>
+        </div>
+        <div class="col-4 offset-4">
+            <div id="response"></div>
+        </div>
+        <div class="col-12">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Logo</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each exhibitors}}
+                    {{#with this}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{title}}</td>
+                        <td><img src="/uploads/exhibitors/{{logoFilename}}" alt="{{logoFilename}}" width="50"
+                                height="50" /></td>
+                        <td><button data-targetId="{{id}}" class="btn btn-danger delBtn">Remove</button></td>
+                    </tr>
+                    {{/with}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    {{#each paginationLinks}}
+                    {{#with this}}
+                    {{{this}}}
+                    {{/with}}
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+        {{else}}
+        <div class="col-12">
+            <p class="text-center">No exhibitors yet.</p>
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+{{> dashboardFooter}}

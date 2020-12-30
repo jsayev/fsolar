@@ -3,12 +3,12 @@
         <div class="col-12 mt-3">
             <ul class="nav nav-pills">
                 <span class="navbar-brand">
-                    Future-Solar
+                    F-Solar
                 </span>
                 {{#each navLinkOptions}}
                 {{#with this}}
-                <li class="nav-item">
-                    <a class="nav-link {{active}}" href="/dashboard/{{href}}">{{label}}</a>
+                <li class="nav-item mr-1">
+                    <a class="nav-link {{active}} px-1" href="{{href}}">{{label}}</a>
                 </li>
                 {{/with}}
                 {{/each}}

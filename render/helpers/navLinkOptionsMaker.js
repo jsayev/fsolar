@@ -3,7 +3,7 @@
  */
 module.exports = function (current) {
   const navLinkNames = [
-    "Summits",
+    "Summit",
     "Gallery",
     "Testimonials",
     "Attendees",
@@ -12,10 +12,10 @@ module.exports = function (current) {
     "Partners",
     "Exhibitors",
     "Subscribers",
-    "Event Agenda",
-    "Conference Schedule",
-    "Support Organizations",
-    "Virtual Conferences",
+    "EventAgenda",
+    "ConferenceSchedule",
+    "SupportOrganizations",
+    "VirtualConferences",
   ];
 
   let navElements = [];
@@ -23,17 +23,17 @@ module.exports = function (current) {
   let index = 0;
 
   for (index; index < navLinkNames.length; index++) {
-    let link = navLinkNames[index];
-    let href = link.toLowerCase().replace(" ", "");
+    let linkLabel = navLinkNames[index];
+    let href = `/dashboard/${linkLabel.toLowerCase()}`;
 
     navElements.push(
       current
         ? {
-            label: link,
+            label: linkLabel,
             href,
-            active: current === link ? "active" : "",
+            active: current === linkLabel ? "active" : "",
           }
-        : { label: link, href }
+        : { label: linkLabel, href }
     );
   }
 

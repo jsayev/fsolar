@@ -14,48 +14,49 @@
 
 
 -- Dumping database structure for future-solar
-DROP DATABASE IF EXISTS `future-solar`;
 CREATE DATABASE IF NOT EXISTS `future-solar` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `future-solar`;
 
+-- Dumping structure for table future-solar.admins
+CREATE TABLE IF NOT EXISTS `admins` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- Data exporting was unselected.
+
 -- Dumping structure for table future-solar.attendees
-DROP TABLE IF EXISTS `attendees`;
 CREATE TABLE IF NOT EXISTS `attendees` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `logoPath` varchar(255) DEFAULT NULL,
+  `logoFilename` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table future-solar.conference_schedule
+CREATE TABLE IF NOT EXISTS `conference_schedule` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
--- Dumping structure for table future-solar.conference_schedule
-DROP TABLE IF EXISTS `conference_schedule`;
-CREATE TABLE IF NOT EXISTS `conference_schedule` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `summitID` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `confSummitID_to_summits.id` (`summitID`),
-  CONSTRAINT `confSummitID_to_summits.id` FOREIGN KEY (`summitID`) REFERENCES `summits` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Data exporting was unselected.
-
 -- Dumping structure for table future-solar.event_agenda
-DROP TABLE IF EXISTS `event_agenda`;
 CREATE TABLE IF NOT EXISTS `event_agenda` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `summitID` int(11) unsigned NOT NULL,
   `fileName` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `summit_id_to_summit.id` (`summitID`) USING BTREE,
-  CONSTRAINT `summitID_to_summit.id` FOREIGN KEY (`summitID`) REFERENCES `summits` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `uploadDate` varchar(255) DEFAULT NULL,
+  `originalName` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.exhibitors
-DROP TABLE IF EXISTS `exhibitors`;
 CREATE TABLE IF NOT EXISTS `exhibitors` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `logoPath` varchar(255) NOT NULL,
@@ -66,21 +67,16 @@ CREATE TABLE IF NOT EXISTS `exhibitors` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.gallery
-DROP TABLE IF EXISTS `gallery`;
 CREATE TABLE IF NOT EXISTS `gallery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `picturePath` varchar(255) NOT NULL,
-  `summitID` int(11) unsigned DEFAULT NULL,
   `photoDate` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `summit_id_to_summits.id` (`summitID`) USING BTREE,
-  CONSTRAINT `summitID_to_summits.id` FOREIGN KEY (`summitID`) REFERENCES `summits` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.partners
-DROP TABLE IF EXISTS `partners`;
 CREATE TABLE IF NOT EXISTS `partners` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `logoPath` varchar(255) NOT NULL,
@@ -91,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `partners` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.speakers
-DROP TABLE IF EXISTS `speakers`;
 CREATE TABLE IF NOT EXISTS `speakers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `fullname` varchar(255) NOT NULL,
@@ -104,7 +99,6 @@ CREATE TABLE IF NOT EXISTS `speakers` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.sponsors
-DROP TABLE IF EXISTS `sponsors`;
 CREATE TABLE IF NOT EXISTS `sponsors` (
   `id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -118,7 +112,6 @@ CREATE TABLE IF NOT EXISTS `sponsors` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.sponsor_type
-DROP TABLE IF EXISTS `sponsor_type`;
 CREATE TABLE IF NOT EXISTS `sponsor_type` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -128,17 +121,16 @@ CREATE TABLE IF NOT EXISTS `sponsor_type` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.subscribers
-DROP TABLE IF EXISTS `subscribers`;
 CREATE TABLE IF NOT EXISTS `subscribers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `email` char(255) DEFAULT NULL,
+  `date` char(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.summits
-DROP TABLE IF EXISTS `summits`;
 CREATE TABLE IF NOT EXISTS `summits` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
@@ -147,16 +139,25 @@ CREATE TABLE IF NOT EXISTS `summits` (
   `location` varchar(255) DEFAULT NULL,
   `about` varchar(1000) DEFAULT NULL,
   `videoLink` varchar(100) DEFAULT NULL,
-  `bgPicturePath` varchar(255) DEFAULT NULL,
-  `bgVideoPath` varchar(255) DEFAULT NULL,
-  `isActive` enum('Yes','No') DEFAULT 'Yes',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table future-solar.summit_files
+CREATE TABLE IF NOT EXISTS `summit_files` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `summitID` int(11) unsigned DEFAULT NULL,
+  `fileName` varchar(255) DEFAULT NULL,
+  `originalName` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `summitID_to_summits.id` (`summitID`),
+  CONSTRAINT `summitID_to_summits.id` FOREIGN KEY (`summitID`) REFERENCES `summits` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.support_organizations
-DROP TABLE IF EXISTS `support_organizations`;
 CREATE TABLE IF NOT EXISTS `support_organizations` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `logoPath` varchar(255) NOT NULL,
@@ -167,7 +168,6 @@ CREATE TABLE IF NOT EXISTS `support_organizations` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.testimonials
-DROP TABLE IF EXISTS `testimonials`;
 CREATE TABLE IF NOT EXISTS `testimonials` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `impression` varchar(1000) DEFAULT NULL,
@@ -180,7 +180,6 @@ CREATE TABLE IF NOT EXISTS `testimonials` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table future-solar.virtual_conferences
-DROP TABLE IF EXISTS `virtual_conferences`;
 CREATE TABLE IF NOT EXISTS `virtual_conferences` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,

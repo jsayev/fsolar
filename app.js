@@ -4,25 +4,35 @@ const logger = require("morgan");
 const passport = require("passport");
 const expSession = require("express-session");
 const hbs = require("hbs");
-
 require("dotenv").config();
 require("./passport").initialize(passport);
 
+// handlebars start
+hbs.registerPartials(path.join(__dirname, "views/partials"));
+// handlebars end
+
 // client routers
 const indexRouter = require("./routes/index");
+const eventAgendaRouter = require("./routes/eventAgendaRouter");
 const subscribeRouter = require("./routes/subscribe");
-const eventAgendaRouter = require("./routes/event-agenda");
-const galleryRouter = require("./routes/gallery");
+const unsubscribeRouter = require("./routes/unsubscribe");
 const errorHandler = require("./routes/errorHandler");
-// admin routers
-const adminLoginRouter = require("./routes/dashboardLogin");
-const adminRegisterRouter = require("./routes/dashboardRegister");
-const summitsRouter = require("./routes/summits");
+
+// dashboard routers
+const dashboardLoginRouter = require("./routes/dashboardLogin");
+const dashboardRegisterRouter = require("./routes/dashboardRegister");
+const dashboardSummitRouter = require("./routes/dashboardSummit");
+const dashboardEventAgendaRouter = require("./routes/dashboardEventAgenda");
+const dashboardSubscribersRouter = require("./routes/dashboardSubscribers");
+const dashboardAttendeesRouter = require("./routes/dashboardAttendees");
+const dashboardExhibitorsRouter = require("./routes/dashboardExhibitors");
+const dashboardPartnersRouter = require("./routes/dashboardPartners");
+const dashboardSupportOrganizationsRouter = require("./routes/dashboardSupportOrganizations");
 const dashboardPasswordRouter = require("./routes/dashboardPassword");
-const logoutRouter = require("./routes/logout");
+const dashboardLogoutRouter = require("./routes/dashboardLogout");
 
 const app = express();
-hbs.registerPartials(path.join(__dirname, "views/partials"));
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
@@ -41,20 +51,29 @@ app.use(passport.session());
 
 // client routes
 app.use("/", indexRouter);
+app.use("/eventagenda", eventAgendaRouter);
 app.use("/subscribe", subscribeRouter);
-app.use("/event-agenda", eventAgendaRouter);
-app.use("/gallery", galleryRouter);
+app.use("/unsubscribe", unsubscribeRouter);
+
 // admin routes
-app.use("/dashboard/login", adminLoginRouter);
-app.use("/dashboard/register", adminRegisterRouter);
-app.use("/dashboard/summits", summitsRouter);
+app.use("/dashboard/login", dashboardLoginRouter);
+app.use("/dashboard/register", dashboardRegisterRouter);
+app.use("/dashboard/summit", dashboardSummitRouter);
+app.use("/dashboard/eventagenda", dashboardEventAgendaRouter);
+app.use("/dashboard/subscribers", dashboardSubscribersRouter);
+app.use("/dashboard/attendees", dashboardAttendeesRouter);
+app.use("/dashboard/exhibitors", dashboardExhibitorsRouter);
+app.use("/dashboard/partners", dashboardPartnersRouter);
+app.use("/dashboard/supportorganizations", dashboardSupportOrganizationsRouter);
 app.use("/dashboard/password", dashboardPasswordRouter);
-app.use("/logout", logoutRouter);
+app.use("/logout", dashboardLogoutRouter);
+
 // unknown routers
 app.use((req, res, next) => {
   res.status(404);
   res.render("error");
 });
+
 // error handler
 app.use(errorHandler);
 
