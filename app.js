@@ -28,6 +28,7 @@ const dashboardAttendeesRouter = require("./routes/dashboardAttendees");
 const dashboardExhibitorsRouter = require("./routes/dashboardExhibitors");
 const dashboardPartnersRouter = require("./routes/dashboardPartners");
 const dashboardSupportOrganizationsRouter = require("./routes/dashboardSupportOrganizations");
+const dashboardSponsorsRouter = require("./routes/dashboardSponsors");
 const dashboardPasswordRouter = require("./routes/dashboardPassword");
 const dashboardLogoutRouter = require("./routes/dashboardLogout");
 
@@ -65,6 +66,7 @@ app.use("/dashboard/attendees", dashboardAttendeesRouter);
 app.use("/dashboard/exhibitors", dashboardExhibitorsRouter);
 app.use("/dashboard/partners", dashboardPartnersRouter);
 app.use("/dashboard/supportorganizations", dashboardSupportOrganizationsRouter);
+app.use("/dashboard/sponsors", dashboardSponsorsRouter);
 app.use("/dashboard/password", dashboardPasswordRouter);
 app.use("/logout", dashboardLogoutRouter);
 

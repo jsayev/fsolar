@@ -10,4 +10,5 @@ export default {
   exhibitor: `${domain}/dashboard/exhibitors`,
   partner: `${domain}/dashboard/partners`,
   supportOrganization: `${domain}/dashboard/supportorganizations`,
+  sponsor: `${domain}/dashboard/sponsors`,
 };

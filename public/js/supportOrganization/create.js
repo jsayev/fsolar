@@ -22,5 +22,5 @@ form.addEventListener("submit", (e) => {
 });
 
 $("#supportOrganizationModal").on("hidden.bs.modal", function () {
-  location.href = "/dashboard/supportorganizations";
+  location.href = location.pathname;
 });

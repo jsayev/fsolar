@@ -62,12 +62,12 @@ module.exports = {
   },
 
   remove(req, res, next) {
-    db.query(`select logoFilename from support_organizations where id="${req.params.id}"`, (err, partners) => {
+    db.query(`select logoFilename from support_organizations where id="${req.params.id}"`, (err, supportOrganizations) => {
       try {
         if (err) throw err;
 
-        if (partners.length > 0) {
-          const { logoFilename } = partners[0];
+        if (supportOrganizations.length > 0) {
+          const { logoFilename } = supportOrganizations[0];
 
           db.query(`delete from support_organizations where id=${req.params.id}`, (err, result) => {
             try {

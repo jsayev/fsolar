@@ -62,6 +62,13 @@
     <script type="module" src="/js/supportOrganization/remove.js"></script>
     {{/if}}
 
+    {{#if renderCreateSponsorJS}}
+    <script type="module" src="/js/sponsor/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveSponsorJS}}
+    <script type="module" src="/js/sponsor/remove.js"></script>
+    {{/if}}
+
     {{#if renderUploadAgendaJS}}
     <script type="module" src="/js/eventAgenda/upload.js"></script>
     {{/if}}

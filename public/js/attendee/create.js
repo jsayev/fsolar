@@ -22,5 +22,5 @@ form.addEventListener("submit", (e) => {
 });
 
 $("#attendeeModal").on("hidden.bs.modal", function () {
-  location.href = "/dashboard/attendees";
+  location.href = location.pathname;
 });

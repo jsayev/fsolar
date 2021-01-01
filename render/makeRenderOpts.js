@@ -1,4 +1,5 @@
 const makeNavLinkOptions = require("./helpers/navLinkOptionsMaker");
+
 /**
  *
  * @param {String} routerName router name to make render options for

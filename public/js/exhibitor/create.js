@@ -22,5 +22,5 @@ form.addEventListener("submit", (e) => {
 });
 
 $("#exhibitorModal").on("hidden.bs.modal", function () {
-  location.href = "/dashboard/exhibitors";
+  location.href = location.pathname;
 });
