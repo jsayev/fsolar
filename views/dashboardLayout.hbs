@@ -41,6 +41,13 @@
     <script type="module" src="/js/attendee/remove.js"></script>
     {{/if}}
 
+    {{#if renderCreateSpeakerJS}}
+    <script type="module" src="/js/speaker/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveSpeakerJS}}
+    <script type="module" src="/js/speaker/remove.js"></script>
+    {{/if}}
+
     {{#if renderCreateExhibitorJS}}
     <script type="module" src="/js/exhibitor/create.js"></script>
     {{/if}}

@@ -11,4 +11,5 @@ export default {
   partner: `${domain}/dashboard/partners`,
   supportOrganization: `${domain}/dashboard/supportorganizations`,
   sponsor: `${domain}/dashboard/sponsors`,
+  speaker: `${domain}/dashboard/speakers`,
 };
