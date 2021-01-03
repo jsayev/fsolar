@@ -21,19 +21,19 @@
                             <div id="response"></div>
                             <form id="sponsorForm">
                                 <div class="form-group">
-                                    <label for="title"><span style="color:red">*</span>Title:</label>
+                                    <label for="title"><span style="color:red">*</span>Name:</label>
                                     <input type="text" class="form-control" id="title" name="title"
-                                        placeholder="ex: Title" required>
+                                        placeholder="ex: Exxon Mobile" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="type"><span style="color:red">*</span>Type:</label>
-                                    <select class="form-control" id="type" name="type">
+                                    <select class="form-control" id="type" name="type" required>
                                         {{#if types}}
                                         {{#each types}}
                                         <option value="{{id}}">{{name}}</option>
                                         {{/each}}
                                         {{else}}
-                                        <option>No types available.</option>
+                                        <option>Please add types.</option>
                                         {{/if}}
                                     </select>
                                 </div>

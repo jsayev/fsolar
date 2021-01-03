@@ -6,29 +6,24 @@ let didSuccess = false;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const formData = new FormData();
-  const { fullname, photo, about, position, company, companyLogo } = e.target;
 
-  formData.append("fullname", fullname.value);
-  formData.append("speakerPhoto", photo.files[0]);
-  formData.append("about", about.value);
-  formData.append("position", position.value);
-  formData.append("company", company.value);
-  formData.append("companyLogo", companyLogo.files[0]);
+  const { speaker, impression } = e.target;
 
-  fetch(endpoints.speaker, {
+  fetch(endpoints.testimonial, {
     method: "post",
-    body: formData,
+    body: JSON.stringify({ impression: impression.value, speaker: speaker.value }),
+    headers: {
+      "content-type": "application/json",
+    },
   })
     .then((res) => res.json())
     .then((res) => {
       if (!res.error) didSuccess = true;
-
       renderResponseAlert(res, "response", form);
     })
     .catch(console.log);
 });
 
-$("#speakerModal").on("hidden.bs.modal", function () {
+$("#testimonialModal").on("hidden.bs.modal", function () {
   if (didSuccess) location.href = location.pathname;
 });
