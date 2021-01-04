@@ -37,6 +37,9 @@ router.get("/:page", isAuthenticated, Testimonial.getPartition, (req, res, next)
   });
 });
 
+// URL: ~/dashboard/testimonials:id
+router.get("/get/:id", isAuthenticated, Testimonial.getOne);
+
 // URL: ~/dashboard/testimonials
 router.post("/", isAuthenticated, Testimonial.addNew);
 

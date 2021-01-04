@@ -13,4 +13,5 @@ export default {
   sponsor: `${domain}/dashboard/sponsors`,
   speaker: `${domain}/dashboard/speakers`,
   testimonial: `${domain}/dashboard/testimonials`,
+  virtualConference: `${domain}/dashboard/virtualconferences`,
 };

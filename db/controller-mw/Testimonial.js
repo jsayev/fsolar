@@ -75,6 +75,21 @@ module.exports = {
     );
   },
 
+  getOne(req, res, next) {
+    db.query(
+      `select s.fullname,t.impression from testimonials as t inner join speakers as s on t.speakerID=s.id where t.id=${req.params.id}`,
+      (err, result) => {
+        try {
+          if (err) throw err;
+
+          res.json(result[0]);
+        } catch (error) {
+          next(error);
+        }
+      }
+    );
+  },
+
   addNew(req, res, next) {
     db.query(`insert into testimonials set speakerID=${req.body.speaker},impression="${req.body.impression}"`, (err, result) => {
       try {
@@ -91,7 +106,6 @@ module.exports = {
     db.query(`delete from testimonials where id="${req.params.id}"`, (err, testimonials) => {
       try {
         if (err) throw err;
-        console.log(testimonials);
 
         res.json("Removed testimonial successfully!");
       } catch (error) {

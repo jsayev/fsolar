@@ -8,10 +8,10 @@ module.exports = (routerName) => {
   switch (routerName) {
     case "Password":
       return {
-        view: `dashboard${routerName}`,
+        view: `dashboard_${routerName}`,
         options: {
           title: `Future-Solar ${routerName}`,
-          layout: "dashboardLayout",
+          layout: "dashboard_Layout",
           renderDashboardCommons: true,
           renderPasswordJS: true,
           navLinkOptions: makeNavLinkOptions(),
@@ -21,10 +21,10 @@ module.exports = (routerName) => {
 
     case "Login":
       return {
-        view: `dashboard${routerName}`,
+        view: `dashboard_${routerName}`,
         options: {
           title: `Future-Solar ${routerName}`,
-          layout: "dashboardLayout",
+          layout: "dashboard_Layout",
           renderDashboardCommons: true,
           renderLoginJS: true,
         },
@@ -32,10 +32,10 @@ module.exports = (routerName) => {
 
     case "Register":
       return {
-        view: `dashboard${routerName}`,
+        view: `dashboard_${routerName}`,
         options: {
           title: `Future-Solar ${routerName}`,
-          layout: "dashboardLayout",
+          layout: "dashboard_Layout",
           renderDashboardCommons: true,
           renderRegisterJS: true,
         },
@@ -43,10 +43,10 @@ module.exports = (routerName) => {
 
     default:
       return {
-        view: `dashboard${routerName}`,
+        view: `dashboard_${routerName}`,
         options: {
           title: `Future-Solar ${routerName}`,
-          layout: "dashboardLayout",
+          layout: "dashboard_Layout",
           renderDashboardCommons: true,
           navLinkOptions: makeNavLinkOptions(`${routerName}`),
         },

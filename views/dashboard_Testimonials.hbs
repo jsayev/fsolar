@@ -72,11 +72,29 @@ nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat" required></
                         <td>{{fullname}}</td>
                         <td>{{position}}</td>
                         <td>{{company}}</td>
-                        <td><button data-targetId="{{id}}" class="btn btn-danger delBtn">Remove</button></td>
+                        <td>
+                            <button data-targetId="{{id}}" class="btn btn-warning viewBtn" data-toggle="modal"
+                                data-target="#viewModal">View</button>
+                            <button data-targetId="{{id}}" class="btn btn-danger delBtn">Remove</button>
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
+            <div class="modal fade" id="viewModal" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-12 d-flex justify-content-center">
             <nav>

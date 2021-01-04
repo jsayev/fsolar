@@ -32,6 +32,9 @@ const storage = multer.diskStorage({
       case "sponsorLogo":
         cb(null, `./public/uploads/sponsors`);
         break;
+      case "virtualConferenceBg":
+        cb(null, `./public/uploads/virtualConference`);
+        break;
       default:
         break;
     }
