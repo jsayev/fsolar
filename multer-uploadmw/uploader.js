@@ -11,6 +11,9 @@ const storage = multer.diskStorage({
       case "summitBgFiles":
         cb(null, `./public/uploads/summit`);
         break;
+      case "galleryPicture":
+        cb(null, `./public/uploads/gallery`);
+        break;
       case "attendeeLogo":
         cb(null, `./public/uploads/attendees`);
         break;
