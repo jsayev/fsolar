@@ -15,4 +15,5 @@ export default {
   testimonial: `${domain}/dashboard/testimonials`,
   virtualConference: `${domain}/dashboard/virtualconferences`,
   gallery: `${domain}/dashboard/gallery`,
+  conferenceSchedule: `${domain}/dashboard/conferenceschedule`,
 };

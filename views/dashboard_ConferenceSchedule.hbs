@@ -1,0 +1,63 @@
+{{!-- --}}
+{{> dashboardHeader}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confScheduleModal">
+                + New conf. schedule
+            </button>
+            <hr>
+            <div class="modal fade" id="confScheduleModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">New conf. schedule</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="response"></div>
+                            <form id="confScheduleForm">
+                                <div class="form-group">
+                                    <label for="date"><span style="color:red">*</span>Date:</label>
+                                    <input type="date" class="form-control" id="date" name="date" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="file"><span style="color:red">*</span>Background:</label>
+                                    <input type="file" class="form-control" id="file" name="file" required>
+                                </div>
+                                <button type="button" class="btn btn-warning" id="addBtn">+ more background</button>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success float-right" value="Create">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if conferenceSchedules}}
+        <div class="col-12">
+            <h2 class="text-center">Conference Schedules</h2>
+        </div>
+        <div class="col-4 offset-4">
+            <div id="response"></div>
+        </div>
+        <div class="col-12">
+
+        </div>
+        {{else}}
+        <div class="col-12">
+            <p class="text-center">No conference schedule yet.</p>
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+{{> dashboardFooter}}

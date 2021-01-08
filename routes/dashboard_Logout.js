@@ -4,6 +4,7 @@ const router = require("express").Router();
 router.all("/", (req, res, next) => {
   if (req.isAuthenticated()) {
     req.logOut();
+    res.clearCookie(`connect.sid`);
   }
   res.redirect("/dashboard/login");
 });
