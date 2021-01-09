@@ -106,6 +106,17 @@
     <script type="module" src="/js/virtualConference/view.js"></script>
     {{/if}}
 
+    {{#if renderCreateConfScheduleDateJS}}
+    <script type="module" src="/js/conferenceSchedule/createDate.js"></script>
+    {{/if}}
+    {{!-- {{#if renderRemoveConfScheduleDateJS}}
+    <script type="module" src="/js/conferenceSchedule/removeDate.js"></script>
+    {{/if}} --}}
+    {{#if renderConfScheduleGetTimesJS}}
+    <script type="module" src="/js/conferenceSchedule/scheduleTimes.js"></script>
+    {{/if}}
+
+
     {{#if renderPasswordJS}}
     <script type="module" src="/js/password.js"></script>
     {{/if}}
