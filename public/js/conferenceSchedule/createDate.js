@@ -17,8 +17,11 @@ form.addEventListener("submit", (e) => {
   })
     .then((res) => res.json())
     .then((res) => {
-      if (!res.error) didSuccess = true;
-      renderResponseAlert(res, "response", form);
+      if (!res.error) {
+        didSuccess = true;
+        return renderResponseAlert(res, "response", form);
+      }
+      renderResponseAlert(res, "response");
     })
     .catch(console.log);
 });

@@ -42,11 +42,15 @@
         </div>
         <div class="col-12">
             {{#each conferences}}
-            <button class="btn btn-outline-primary" data-targetSchedule="{{id}}">{{date}}</button>
+            <div class="dateBtnParent">
+                <button class="btn btn-outline-primary dateBtn" data-targetdateid="{{id}}">{{date}}</button>
+                <button class='btn btn-sm btn-danger removeDateBtn' data-targetdateid="{{id}}">&times;</button>
+            </div>
             {{/each}}
         </div>
         <div class="col-4 offset-4" id="timeResponse"></div>
-        <div class="col-12 mt-3" id="scheduleTimes"></div>
+        <div class="col-12" id="addTimeBtnsContainer"></div>
+        <div class="col-12" id="scheduleTimes"></div>
         {{else}}
         <div class="col-12">
             <p class="text-center">No conference dates yet.</p>

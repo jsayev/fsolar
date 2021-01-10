@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
     {{/if}}
+    {{#if renderConfScheduleGetTimesJS}}
+    <link rel="stylesheet" href="/stylesheets/conferenceSchedule.css">
+    {{/if}}
 </head>
 
 <body>
@@ -109,9 +112,9 @@
     {{#if renderCreateConfScheduleDateJS}}
     <script type="module" src="/js/conferenceSchedule/createDate.js"></script>
     {{/if}}
-    {{!-- {{#if renderRemoveConfScheduleDateJS}}
+    {{#if renderRemoveConfScheduleDateJS}}
     <script type="module" src="/js/conferenceSchedule/removeDate.js"></script>
-    {{/if}} --}}
+    {{/if}}
     {{#if renderConfScheduleGetTimesJS}}
     <script type="module" src="/js/conferenceSchedule/scheduleTimes.js"></script>
     {{/if}}
