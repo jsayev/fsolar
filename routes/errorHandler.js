@@ -12,7 +12,7 @@ module.exports = (err, req, res, next) => {
     res.status(500);
     return res.json({ error: true, message: "Uploading failed!" });
   }
-  // rest of errors
+  // rest of the errors
   res.status(400);
   res.json({ error: true, message: err });
 };

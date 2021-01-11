@@ -10,6 +10,7 @@ router.get("/", isAuthenticated, Summit.pickAll, (req, res, next) => {
   const { summit, summitFiles } = res.locals;
   const renderCreateSummitJS = !summit;
   const renderRemoveSummitJS = !renderCreateSummitJS;
+  
   if (summit) {
     summit.date = dateformat(summit.date, "d mmm yyyy");
     summit.summitFiles = summitFiles;
