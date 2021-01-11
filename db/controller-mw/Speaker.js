@@ -49,6 +49,18 @@ module.exports = {
     });
   },
 
+  getForConf(req, res, next) {
+    db.query(`select id,fullname from speakers`, (err, result) => {
+      try {
+        if (err) throw err;
+        
+        res.json(result);
+      } catch (error) {
+        next(error);
+      }
+    });
+  },
+
   addNew(req, res, next) {
     db.query(
       `insert into speakers set fullname="${req.body.fullname}",photo="${req.files["speakerPhoto"][0].filename}",position="${req.body.position}",company="${req.body.company}",companyLogo="${req.files["companyLogo"][0].filename}",about="${req.body.about}"`,

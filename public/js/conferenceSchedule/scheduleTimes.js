@@ -66,13 +66,13 @@ dateBtns.forEach((btn) => {
               <input type="time" class="form-control" id="presentationTime" name="time" required>
             </div>
             <div class="form-group">
-                <label for="title"><span style="color:red">*</span>Title:</label>
+                <label for="title"><span style="color:red">*</span>Presentation name:</label>
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
             <div class="form-group">
-              <label for="speakerIds"><span style="color:red">*</span>Speaker:</label>
-              <select class="form-control" id="speakerIds" name="speaker">
-                  <option value="{{id}}">{{name}}</option>
+              <label for="speakers">Speaker:</label>
+              <select class="form-control" id="speakers" name="speaker">
+                <option value="-1">No speaker</option>
               </select>
             </div>
           </form>
@@ -117,7 +117,7 @@ dateBtns.forEach((btn) => {
       fetch(`${endpoints.conferenceSchedule}/${this.dataset.targetdateid}/presentation`, {
         method: "post",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ time: time.value, title: title.value, speaker: speaker.value }),
+        body: JSON.stringify({ time: time.value, title: title.value, speaker: speaker.value === "-1" ? null : speaker.value }),
       })
         .then((res) => res.json())
         .then((res) => {
@@ -130,30 +130,41 @@ dateBtns.forEach((btn) => {
         .catch(console.log);
     });
 
-    const presentatinoBtn = document.querySelector(`button[data-target="#addPresentationModal"]`);
-
-    presentatinoBtn.onclick = function () {
-      console.log(`clicked`);
-      // finish this fetch speakers id and fullnamesa and put in speakers sslect options
-
-    };
-
-    $("#addBreakModal").on("hidden.bs.modal", function () {
-      // notworking dataset
+    $("#addBreakModal").on("hidden.bs.modal", () => {
       if (didBreakSucceed) getTimesAndRender(this.dataset.targetdateid);
       didBreakSucceed = false;
     });
 
-    $("#addPresentationModal").on("hidden.bs.modal", function () {
-      // notworking dataset
+    $("#addPresentationModal").on("hidden.bs.modal", () => {
       if (didPresentationSucceed) getTimesAndRender(this.dataset.targetdateid);
       didPresentationSucceed = false;
     });
     // add time modals end
 
     getTimesAndRender(this.dataset.targetdateid);
+    getSpeakers();
   };
 });
+
+function getSpeakers() {
+  fetch(`${endpoints.speaker}/dataconf`)
+    .then((res) => res.json())
+    .then((res) => {
+      if (!res.error && res.length > 0) {
+        const speakersContainer = document.getElementById("speakers");
+
+        let options = res.map((speaker) => {
+          let option = document.createElement("option");
+          option.setAttribute("value", speaker.id);
+          option.innerText = speaker.fullname;
+          return option;
+        });
+
+        options.forEach((opt) => speakersContainer.appendChild(opt));
+      }
+    })
+    .catch(console.log);
+}
 
 function getTimesAndRender(dateid) {
   fetch(`${endpoints.conferenceSchedule}/date/${dateid}`)
@@ -190,7 +201,7 @@ function getTimesAndRender(dateid) {
                 <th scope="col">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="timebody">
             ${rows}
         </tbody>
         </table>`;
@@ -205,7 +216,14 @@ function getTimesAndRender(dateid) {
             .then((res) => res.json())
             .then((res) => {
               if (res.error) return renderResponseAlert(res, "timeResponse");
-              this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+
+              const timebody = document.getElementById("timebody");
+
+              timebody.removeChild(this.parentNode.parentNode);
+
+              if (timebody.childElementCount === 0) {
+                timesContainer.innerHTML = `<p class="text-center">No conference times for this date yet.</p>`;
+              }
             })
             .catch(console.log);
         };

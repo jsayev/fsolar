@@ -25,6 +25,8 @@ module.exports = {
         try {
           if (err) throw err;
 
+          result = result.sort((a, b) => a.time.localeCompare(b.time));
+
           res.json(result);
         } catch (error) {
           next(error);
@@ -57,12 +59,25 @@ module.exports = {
 
   addBreakTime(req, res, next) {
     db.query(
-      `insert into conference_schedule_times set time="${req.body.time}",isBreak=1,conferenceScheduleDateID=${req.params.dateID}`,
+      `select * from conference_schedule_times where conferenceScheduleDateID=${req.params.dateID} and time="${req.body.time}"`,
       (err, result) => {
         try {
           if (err) throw err;
 
-          res.json("Added break time successfully!");
+          if (result.length > 0) throw "Time is already taken!";
+
+          db.query(
+            `insert into conference_schedule_times set time="${req.body.time}",isBreak=1,conferenceScheduleDateID=${req.params.dateID}`,
+            (err, result) => {
+              try {
+                if (err) throw err;
+
+                res.json("Added break time successfully!");
+              } catch (error) {
+                next(error);
+              }
+            }
+          );
         } catch (error) {
           next(error);
         }
@@ -72,14 +87,27 @@ module.exports = {
 
   addPresentationTime(req, res, next) {
     db.query(
-      `insert into conference_schedule_times set time="${req.body.time},isBreak=0,presentationName="${req.body.title}",speakerID=${
-        req.body.speaker ? req.body.speaker : null
-      }conferenceScheduleDateID=${req.params.dateID}"`,
+      `select * from conference_schedule_times where conferenceScheduleDateID=${req.params.dateID} and time="${req.body.time}"`,
       (err, result) => {
         try {
           if (err) throw err;
 
-          res.json("Added presentation time successfully!");
+          if (result.length > 0) throw "Time is already taken!";
+
+          db.query(
+            `insert into conference_schedule_times set time="${req.body.time}",isBreak=0,presentationName="${req.body.title}",speakerID=${
+              req.body.speaker ? req.body.speaker : null
+            },conferenceScheduleDateID=${req.params.dateID}`,
+            (err, result) => {
+              try {
+                if (err) throw err;
+
+                res.json("Added presentation time successfully!");
+              } catch (error) {
+                next(error);
+              }
+            }
+          );
         } catch (error) {
           next(error);
         }

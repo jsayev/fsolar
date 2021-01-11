@@ -21,6 +21,9 @@ router.get("/", isAuthenticated, Speaker.getInitial, (req, res, next) => {
   });
 });
 
+// URL: ~/dashboard/speakers/dataconf
+router.get("/dataconf", isAuthenticated, Speaker.getForConf);
+
 // URL: ~/dashboard/speakers/:page
 router.get("/:page", isAuthenticated, Speaker.getPartition, (req, res, next) => {
   const { speakers, speakerCount } = res.locals;
