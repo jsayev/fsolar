@@ -10,7 +10,7 @@ module.exports = {
       try {
         if (err) throw err;
 
-        res.locals.conferences = result;
+        res.locals.conf_dates = result;
         next();
       } catch (error) {
         next(error);

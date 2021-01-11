@@ -7,16 +7,16 @@ const router = require("express").Router();
 
 // URL: ~/dashboard/conferenceschedule
 router.get("/", isAuthenticated, ConferenceSchedule.getAllDates, (req, res, next) => {
-  const { conferences } = res.locals;
-  const renderRemoveConfScheduleDateJS = conferences.length > 0 ? true : false;
+  const { conf_dates } = res.locals;
+  const renderRemoveConfScheduleDateJS = conf_dates.length > 0 ? true : false;
 
-  conferences.sort((c1, c2) => Date.parse(c1.date) - Date.parse(c2.date));
-  conferences.forEach((c) => (c.date = dateformat(c.date, "d mmm yyyy")));
+  conf_dates.sort((c1, c2) => Date.parse(c1.date) - Date.parse(c2.date));
+  conf_dates.forEach((c) => (c.date = dateformat(c.date, "d mmm yyyy")));
 
   res.render(render.view, {
     ...render.options,
     username: req.user.username,
-    conferences,
+    conf_dates,
     renderCreateConfScheduleDateJS: true,
     renderRemoveConfScheduleDateJS,
     renderConfScheduleGetTimesJS: renderRemoveConfScheduleDateJS,
