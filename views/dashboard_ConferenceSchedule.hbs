@@ -1,0 +1,62 @@
+{{!-- --}}
+{{> dashboardHeader}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confScheduleModal">
+                + New conference date
+            </button>
+            <hr>
+            <div class="modal fade" id="confScheduleModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">New conference date</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="response"></div>
+                            <form id="confScheduleForm">
+                                <div class="form-group">
+                                    <label for="date"><span style="color:red">*</span>Date:</label>
+                                    <input type="date" class="form-control" id="date" name="date" required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" form="confScheduleForm" class="btn btn-success">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if conferences}}
+        <div class="col-12">
+            <h2 class="text-center">Conference dates</h2>
+        </div>
+        <div class="col-4 offset-4">
+            <div id="dateResponse"></div>
+        </div>
+        <div class="col-12">
+            {{#each conferences}}
+            <div class="dateBtnParent">
+                <button class="btn btn-outline-primary dateBtn" data-targetdateid="{{id}}">{{date}}</button>
+                <button class='btn btn-sm btn-danger removeDateBtn' data-targetdateid="{{id}}">&times;</button>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-4 offset-4" id="timeResponse"></div>
+        <div class="col-12" id="addTimeBtnsContainer"></div>
+        <div class="col-12" id="scheduleTimes"></div>
+        {{else}}
+        <div class="col-12">
+            <p class="text-center">No conference dates yet.</p>
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+{{> dashboardFooter}}

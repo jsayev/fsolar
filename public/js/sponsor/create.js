@@ -9,9 +9,10 @@ form.addEventListener("submit", (e) => {
   const formData = new FormData();
 
   formData.append("title", e.target.title.value);
-  formData.append("attendeeLogo", e.target.logo.files[0]);
+  formData.append("type", e.target.type.value);
+  formData.append("sponsorLogo", e.target.logo.files[0]);
 
-  fetch(endpoints.attendee, {
+  fetch(endpoints.sponsor, {
     method: "post",
     body: formData,
   })
@@ -23,6 +24,6 @@ form.addEventListener("submit", (e) => {
     .catch(console.log);
 });
 
-$("#attendeeModal").on("hidden.bs.modal", function () {
+$("#sponsorModal").on("hidden.bs.modal", function () {
   if (didSuccess) location.href = location.pathname;
 });

@@ -1,0 +1,113 @@
+{{!-- --}}
+{{> dashboardHeader}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#speakerModal">
+                + New speaker
+            </button>
+            <hr>
+            <div class="modal fade" id="speakerModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">New speaker</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="response"></div>
+                            <form id="speakerForm">
+                                <div class="form-group">
+                                    <label for="fullname"><span style="color:red">*</span>Fullname:</label>
+                                    <input type="text" class="form-control" id="fullname" name="fullname"
+                                        placeholder="ex: Kash Mahmood" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="photo"><span style="color:red">*</span>Photo:</label>
+                                    <input type="file" class="form-control" id="photo" name="photo" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="about"><span style="color:red">*</span>About:</label>
+                                    <textarea class="form-control" id="about" name="about" rows="4" placeholder="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="position"><span style="color:red">*</span>Position:</label>
+                                    <input type="text" class="form-control" id="position" name="position"
+                                        placeholder="ex: Senior Vice President" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="company"><span style="color:red">*</span>Company:</label>
+                                    <input type="text" class="form-control" id="company" name="company"
+                                        placeholder="ex: Gazprom" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="companyLogo"><span style="color:red">*</span>Company Logo:</label>
+                                    <input type="file" class="form-control" id="companyLogo" name="companyLogo"
+                                        required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" form="speakerForm" class="btn btn-success">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if speakers}}
+        <div class="col-12">
+            <h2 class="text-center">Speakers</h2>
+        </div>
+        <div class="col-4 offset-4">
+            <div id="response"></div>
+        </div>
+        <div class="col-12">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Company</th>
+                        <th scope="col">Company Logo</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each speakers}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{fullname}}</td>
+                        <td><img src="/uploads/speakers/{{photo}}" alt="{{photo}}" width="50" height="50" /></td>
+                        <td>{{position}}</td>
+                        <td>{{company}}</td>
+                        <td><img src="/uploads/companies/{{companyLogo}}" alt="{{photo}}" width="50" height="50" /></td>
+                        <td><button data-targetId="{{id}}" class="btn btn-danger delBtn">Remove</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    {{#each paginationLinks}}
+                    {{{this}}}
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+        {{else}}
+        <div class="col-12">
+            <p class="text-center">No speakers yet.</p>
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+{{> dashboardFooter}}

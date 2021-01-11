@@ -8,10 +8,12 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData();
 
-  formData.append("title", e.target.title.value);
-  formData.append("attendeeLogo", e.target.logo.files[0]);
+  const { day, picture } = e.target;
 
-  fetch(endpoints.attendee, {
+  formData.append("day", day.value);
+  formData.append("galleryPicture", picture.files[0]);
+
+  fetch(endpoints.gallery, {
     method: "post",
     body: formData,
   })
@@ -23,6 +25,6 @@ form.addEventListener("submit", (e) => {
     .catch(console.log);
 });
 
-$("#attendeeModal").on("hidden.bs.modal", function () {
+$("#galleryModal").on("hidden.bs.modal", function () {
   if (didSuccess) location.href = location.pathname;
 });

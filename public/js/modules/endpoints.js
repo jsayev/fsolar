@@ -10,4 +10,10 @@ export default {
   exhibitor: `${domain}/dashboard/exhibitors`,
   partner: `${domain}/dashboard/partners`,
   supportOrganization: `${domain}/dashboard/supportorganizations`,
+  sponsor: `${domain}/dashboard/sponsors`,
+  speaker: `${domain}/dashboard/speakers`,
+  testimonial: `${domain}/dashboard/testimonials`,
+  virtualConference: `${domain}/dashboard/virtualconferences`,
+  gallery: `${domain}/dashboard/gallery`,
+  conferenceSchedule: `${domain}/dashboard/conferenceschedule`,
 };

@@ -3,6 +3,7 @@ import renderResponseAlert from "/js/modules/renderResponseAlert.js";
 
 $("#changePasswordForm").submit(function (e) {
   e.preventDefault();
+  
   fetch(endpoints.password, {
     method: "put",
     body: JSON.stringify({

@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
     {{/if}}
+    {{#if renderConfScheduleGetTimesJS}}
+    <link rel="stylesheet" href="/stylesheets/conferenceSchedule.css">
+    {{/if}}
 </head>
 
 <body>
@@ -34,11 +37,33 @@
     <script type="module" src="/js/summit/remove.js"></script>
     {{/if}}
 
+    {{#if renderCreateGalleryJS}}
+    <script type="module" src="/js/gallery/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveGalleryJS}}
+    <script type="module" src="/js/gallery/remove.js"></script>
+    {{/if}}
+
+    {{#if renderCreateTestimonialJS}}
+    <script type="module" src="/js/testimonial/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveTestimonialJS}}
+    <script type="module" src="/js/testimonial/remove.js"></script>
+    <script type="module" src="/js/testimonial/view.js"></script>
+    {{/if}}
+
     {{#if renderCreateAttendeeJS}}
     <script type="module" src="/js/attendee/create.js"></script>
     {{/if}}
     {{#if renderRemoveAttendeeJS}}
     <script type="module" src="/js/attendee/remove.js"></script>
+    {{/if}}
+
+    {{#if renderCreateSpeakerJS}}
+    <script type="module" src="/js/speaker/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveSpeakerJS}}
+    <script type="module" src="/js/speaker/remove.js"></script>
     {{/if}}
 
     {{#if renderCreateExhibitorJS}}
@@ -62,12 +87,38 @@
     <script type="module" src="/js/supportOrganization/remove.js"></script>
     {{/if}}
 
+    {{#if renderCreateSponsorJS}}
+    <script type="module" src="/js/sponsor/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveSponsorJS}}
+    <script type="module" src="/js/sponsor/remove.js"></script>
+    {{/if}}
+
     {{#if renderUploadAgendaJS}}
     <script type="module" src="/js/eventAgenda/upload.js"></script>
     {{/if}}
     {{#if renderRemoveAgendaJS}}
     <script type="module" src="/js/eventAgenda/remove.js"></script>
     {{/if}}
+
+    {{#if renderCreateVirtualConferenceJS}}
+    <script type="module" src="/js/virtualConference/create.js"></script>
+    {{/if}}
+    {{#if renderRemoveVirtualConferenceJS}}
+    <script type="module" src="/js/virtualConference/remove.js"></script>
+    <script type="module" src="/js/virtualConference/view.js"></script>
+    {{/if}}
+
+    {{#if renderCreateConfScheduleDateJS}}
+    <script type="module" src="/js/conferenceSchedule/createDate.js"></script>
+    {{/if}}
+    {{#if renderRemoveConfScheduleDateJS}}
+    <script type="module" src="/js/conferenceSchedule/removeDate.js"></script>
+    {{/if}}
+    {{#if renderConfScheduleGetTimesJS}}
+    <script type="module" src="/js/conferenceSchedule/scheduleTimes.js"></script>
+    {{/if}}
+
 
     {{#if renderPasswordJS}}
     <script type="module" src="/js/password.js"></script>

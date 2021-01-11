@@ -6,14 +6,15 @@ let didSuccess = false;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const formData = new FormData();
 
-  formData.append("title", e.target.title.value);
-  formData.append("attendeeLogo", e.target.logo.files[0]);
+  const { speaker, impression } = e.target;
 
-  fetch(endpoints.attendee, {
+  fetch(endpoints.testimonial, {
     method: "post",
-    body: formData,
+    body: JSON.stringify({ impression: impression.value, speaker: speaker.value }),
+    headers: {
+      "content-type": "application/json",
+    },
   })
     .then((res) => res.json())
     .then((res) => {
@@ -23,6 +24,6 @@ form.addEventListener("submit", (e) => {
     .catch(console.log);
 });
 
-$("#attendeeModal").on("hidden.bs.modal", function () {
+$("#testimonialModal").on("hidden.bs.modal", function () {
   if (didSuccess) location.href = location.pathname;
 });

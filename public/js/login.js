@@ -3,6 +3,7 @@ import renderResponseAlert from "/js/modules/renderResponseAlert.js";
 
 $("form").submit((e) => {
   e.preventDefault();
+  
   fetch(endpoints.login, {
     method: "post",
     body: JSON.stringify({

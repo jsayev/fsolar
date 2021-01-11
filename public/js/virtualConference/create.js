@@ -8,10 +8,15 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData();
 
-  formData.append("title", e.target.title.value);
-  formData.append("attendeeLogo", e.target.logo.files[0]);
+  const { title, description, date, time, picture } = e.target;
 
-  fetch(endpoints.attendee, {
+  formData.append("title", title.value);
+  formData.append("description", description.value);
+  formData.append("date", date.value);
+  formData.append("time", time.value);
+  formData.append("virtualConferenceBg", picture.files[0]);
+
+  fetch(endpoints.virtualConference, {
     method: "post",
     body: formData,
   })
@@ -23,6 +28,6 @@ form.addEventListener("submit", (e) => {
     .catch(console.log);
 });
 
-$("#attendeeModal").on("hidden.bs.modal", function () {
+$("#virtualConfModal").on("hidden.bs.modal", function () {
   if (didSuccess) location.href = location.pathname;
 });

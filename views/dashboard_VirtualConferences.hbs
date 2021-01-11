@@ -1,0 +1,123 @@
+{{!-- --}}
+{{> dashboardHeader}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#virtualConfModal">
+                + New virtual conf.
+            </button>
+            <hr>
+            <div class="modal fade" id="virtualConfModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">New virtual conf.</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="response"></div>
+                            <form id="virtualConfForm">
+                                <div class="form-group">
+                                    <label for="title"><span style="color:red">*</span>Title:</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        placeholder="ex: Greener Future of Shipping Industry" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description"><span style="color:red">*</span>Description:</label>
+                                    <textarea class="form-control" id="description" name="description" rows="4"
+                                        placeholder="ex: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date"><span style="color:red">*</span>Date:</label>
+                                    <input type="text" class="form-control" id="date" name="date"
+                                        placeholder="ex: 20-21 March" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time"><span style="color:red">*</span>Time:</label>
+                                    <input type="text" class="form-control" id="time" name="time"
+                                        placeholder="ex: 13:00-15:45" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="picture"><span style="color:red">*</span>Picture:</label>
+                                    <input type="file" class="form-control" id="picture" name="picture" required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" form="virtualConfForm" class="btn btn-success">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if virtualConferences}}
+        <div class="col-12">
+            <h2 class="text-center">Virtual Conferences</h2>
+        </div>
+        <div class="col-4 offset-4">
+            <div id="response"></div>
+        </div>
+        <div class="col-12">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each virtualConferences}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{title}}</td>
+                        <td>{{date}}</td>
+                        <td>{{time}}</td>
+                        <td>
+                            <button data-targetId="{{id}}" class="btn btn-warning viewBtn" data-toggle="modal"
+                                data-target="#viewModal">View</button>
+                            <button data-targetId="{{id}}" class="btn btn-danger delBtn">Remove</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="modal fade" id="viewModal" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    {{#each paginationLinks}}
+                    {{{this}}}
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+        {{else}}
+        <div class="col-12">
+            <p class="text-center">No Virtual Conferences yet.</p>
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+{{> dashboardFooter}}

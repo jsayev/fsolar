@@ -40,7 +40,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Title: {{title}}</h5>
                             <button type="button" class="close" data-dismiss="modal">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -53,9 +53,14 @@
                             <p>{{about}}</p>
                             <h6>Video Link: <a href="{{videoLink}}" target="_blank">{{videoLink}}</a></h6>
                             <h6>Background files:</h6>
-                            {{#each summitFiles}}
-                            <p class="m-0">{{originalName}}</p>
-                            {{/each}}
+                            <div class="row">
+                                {{#each summitFiles}}
+                                <div class="col-3">
+                                    <img class="img-thumbnail" src="/uploads/summit/{{fileName}}"
+                                        alt="{{originalName}}">
+                                </div>
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -6,23 +6,26 @@ let didSuccess = false;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const formData = new FormData();
+  const { date } = e.target;
 
-  formData.append("title", e.target.title.value);
-  formData.append("attendeeLogo", e.target.logo.files[0]);
-
-  fetch(endpoints.attendee, {
+  fetch(endpoints.conferenceSchedule, {
     method: "post",
-    body: formData,
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ date: date.value }),
   })
     .then((res) => res.json())
     .then((res) => {
-      if (!res.error) didSuccess = true;
-      renderResponseAlert(res, "response", form);
+      if (!res.error) {
+        didSuccess = true;
+        return renderResponseAlert(res, "response", form);
+      }
+      renderResponseAlert(res, "response");
     })
     .catch(console.log);
 });
 
-$("#attendeeModal").on("hidden.bs.modal", function () {
+$("#confScheduleModal").on("hidden.bs.modal", function () {
   if (didSuccess) location.href = location.pathname;
 });

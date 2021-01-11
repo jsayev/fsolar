@@ -2,6 +2,7 @@ import endpoints from "/js/modules/endpoints.js";
 import renderResponseAlert from "/js/modules/renderResponseAlert.js";
 
 const form = document.querySelector("form");
+let didSuccess = false;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -16,11 +17,12 @@ form.addEventListener("submit", (e) => {
   })
     .then((res) => res.json())
     .then((res) => {
+      if (!res.error) didSuccess = true;
       renderResponseAlert(res, "response", form);
     })
     .catch(console.log);
 });
 
 $("#partnerModal").on("hidden.bs.modal", function () {
-  location.href = "/dashboard/partners";
+  if (didSuccess) location.href = location.pathname;
 });

@@ -19,17 +19,23 @@ const unsubscribeRouter = require("./routes/unsubscribe");
 const errorHandler = require("./routes/errorHandler");
 
 // dashboard routers
-const dashboardLoginRouter = require("./routes/dashboardLogin");
-const dashboardRegisterRouter = require("./routes/dashboardRegister");
-const dashboardSummitRouter = require("./routes/dashboardSummit");
-const dashboardEventAgendaRouter = require("./routes/dashboardEventAgenda");
-const dashboardSubscribersRouter = require("./routes/dashboardSubscribers");
-const dashboardAttendeesRouter = require("./routes/dashboardAttendees");
-const dashboardExhibitorsRouter = require("./routes/dashboardExhibitors");
-const dashboardPartnersRouter = require("./routes/dashboardPartners");
-const dashboardSupportOrganizationsRouter = require("./routes/dashboardSupportOrganizations");
-const dashboardPasswordRouter = require("./routes/dashboardPassword");
-const dashboardLogoutRouter = require("./routes/dashboardLogout");
+const dashboard_LoginRouter = require("./routes/dashboard_Login");
+const dashboard_RegisterRouter = require("./routes/dashboard_Register");
+const dashboard_SummitRouter = require("./routes/dashboard_Summit");
+const dashboard_GalleryRouter = require("./routes/dashboard_Gallery");
+const dashboard_TestimonialRouter = require("./routes/dashboard_Testimonials");
+const dashboard_EventAgendaRouter = require("./routes/dashboard_EventAgenda");
+const dashboard_SubscribersRouter = require("./routes/dashboard_Subscribers");
+const dashboard_AttendeesRouter = require("./routes/dashboard_Attendees");
+const dashboard_SpeakerRouter = require("./routes/dashboard_Speakers");
+const dashboard_ExhibitorsRouter = require("./routes/dashboard_Exhibitors");
+const dashboard_PartnersRouter = require("./routes/dashboard_Partners");
+const dashboard_SupportOrganizationsRouter = require("./routes/dashboard_SupportOrganizations");
+const dashboard_SponsorsRouter = require("./routes/dashboard_Sponsors");
+const dashboard_VirtualConferenceRouter = require("./routes/dashboard_VirtualConferences");
+const dashboard_ConferenceScheduleRouter = require("./routes/dashboard_ConferenceSchedules");
+const dashboard_PasswordRouter = require("./routes/dashboard_Password");
+const dashboard_LogoutRouter = require("./routes/dashboard_Logout");
 
 const app = express();
 
@@ -56,17 +62,23 @@ app.use("/subscribe", subscribeRouter);
 app.use("/unsubscribe", unsubscribeRouter);
 
 // admin routes
-app.use("/dashboard/login", dashboardLoginRouter);
-app.use("/dashboard/register", dashboardRegisterRouter);
-app.use("/dashboard/summit", dashboardSummitRouter);
-app.use("/dashboard/eventagenda", dashboardEventAgendaRouter);
-app.use("/dashboard/subscribers", dashboardSubscribersRouter);
-app.use("/dashboard/attendees", dashboardAttendeesRouter);
-app.use("/dashboard/exhibitors", dashboardExhibitorsRouter);
-app.use("/dashboard/partners", dashboardPartnersRouter);
-app.use("/dashboard/supportorganizations", dashboardSupportOrganizationsRouter);
-app.use("/dashboard/password", dashboardPasswordRouter);
-app.use("/logout", dashboardLogoutRouter);
+app.use("/dashboard/login", dashboard_LoginRouter);
+app.use("/dashboard/register", dashboard_RegisterRouter);
+app.use("/dashboard/summit", dashboard_SummitRouter);
+app.use("/dashboard/gallery", dashboard_GalleryRouter);
+app.use("/dashboard/testimonials", dashboard_TestimonialRouter);
+app.use("/dashboard/eventagenda", dashboard_EventAgendaRouter);
+app.use("/dashboard/subscribers", dashboard_SubscribersRouter);
+app.use("/dashboard/attendees", dashboard_AttendeesRouter);
+app.use("/dashboard/speakers", dashboard_SpeakerRouter);
+app.use("/dashboard/exhibitors", dashboard_ExhibitorsRouter);
+app.use("/dashboard/partners", dashboard_PartnersRouter);
+app.use("/dashboard/supportorganizations", dashboard_SupportOrganizationsRouter);
+app.use("/dashboard/sponsors", dashboard_SponsorsRouter);
+app.use("/dashboard/virtualconferences", dashboard_VirtualConferenceRouter);
+app.use("/dashboard/conferenceschedule", dashboard_ConferenceScheduleRouter);
+app.use("/dashboard/password", dashboard_PasswordRouter);
+app.use("/logout", dashboard_LogoutRouter);
 
 // unknown routers
 app.use((req, res, next) => {
