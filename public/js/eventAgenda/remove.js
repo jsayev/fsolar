@@ -9,7 +9,7 @@ deleteBtn.addEventListener("click", function () {
   })
     .then((res) => res.json())
     .then((res) => {
-      if (res.error) return renderResponseAlert(res, "response");
+      if (res.error) return renderResponseAlert(res, "actionResponse");
       location.href = "/dashboard/eventagenda";
     })
     .catch(console.log);

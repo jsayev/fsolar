@@ -43,7 +43,7 @@ module.exports = {
 
   getInitial(req, res, next) {
     db.query(
-      `select s.fullname,s.position,s.company,t.impression,t.id from testimonials as t inner join speakers as s on t.speakerID=s.id limit 10`,
+      `select s.fullname,s.position,s.company,t.id,t.impression,t.videoLink from testimonials as t inner join speakers as s on t.speakerID=s.id limit 10`,
       (err, result) => {
         try {
           if (err) throw err;
@@ -77,7 +77,7 @@ module.exports = {
 
   getOne(req, res, next) {
     db.query(
-      `select s.fullname,t.impression from testimonials as t inner join speakers as s on t.speakerID=s.id where t.id=${req.params.id}`,
+      `select s.fullname,t.impression,t.videoLink from testimonials as t inner join speakers as s on t.speakerID=s.id where t.id=${req.params.id}`,
       (err, result) => {
         try {
           if (err) throw err;
@@ -91,15 +91,18 @@ module.exports = {
   },
 
   addNew(req, res, next) {
-    db.query(`insert into testimonials set speakerID=${req.body.speaker},impression="${req.body.impression}"`, (err, result) => {
-      try {
-        if (err) throw err;
+    db.query(
+      `insert into testimonials set speakerID=${req.body.speaker},impression="${req.body.impression}",videoLink="${req.body.videoLink}"`,
+      (err, result) => {
+        try {
+          if (err) throw err;
 
-        res.json("Added testimonial successfully!");
-      } catch (error) {
-        next(error);
+          res.json("Added testimonial successfully!");
+        } catch (error) {
+          next(error);
+        }
       }
-    });
+    );
   },
 
   remove(req, res, next) {

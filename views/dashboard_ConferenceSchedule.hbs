@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        {{#if conferences}}
+        {{#if conf_dates}}
         <div class="col-12">
             <h2 class="text-center">Conference dates</h2>
         </div>
@@ -41,7 +41,7 @@
             <div id="dateResponse"></div>
         </div>
         <div class="col-12">
-            {{#each conferences}}
+            {{#each conf_dates}}
             <div class="dateBtnParent">
                 <button class="btn btn-outline-primary dateBtn" data-targetdateid="{{id}}">{{date}}</button>
                 <button class='btn btn-sm btn-danger removeDateBtn' data-targetdateid="{{id}}">&times;</button>

@@ -8,6 +8,7 @@ const router = require("express").Router();
 // URL: ~/dashboard/conferenceschedule
 router.get("/", isAuthenticated, ConferenceSchedule.getAllDates, (req, res, next) => {
   const { conf_dates } = res.locals;
+  console.log(conf_dates);
   const renderRemoveConfScheduleDateJS = conf_dates.length > 0 ? true : false;
 
   conf_dates.sort((c1, c2) => Date.parse(c1.date) - Date.parse(c2.date));

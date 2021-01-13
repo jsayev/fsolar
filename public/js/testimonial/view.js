@@ -11,9 +11,9 @@ viewBtn.forEach((btn) => {
 
         const modalHeader = document.querySelector("#viewModal .modal-title");
         const modalBody = document.querySelector("#viewModal .modal-body");
-        
-        modalHeader.innerHTML = res.fullname;
-        modalBody.innerHTML = `<p style="word-break:break-all">${res.impression}</p>`;
+
+        modalHeader.innerHTML = `Speaker: ${res.fullname}`;
+        modalBody.innerHTML = `<p style="word-break:break-all">${res.impression}</p><a class="d-block" href="${res.videoLink}" target="_blank">${res.videoLink}</a>`;
       })
       .catch(console.log);
   });

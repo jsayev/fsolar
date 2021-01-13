@@ -53,7 +53,7 @@ module.exports = {
     db.query(`select id,fullname from speakers`, (err, result) => {
       try {
         if (err) throw err;
-        
+
         res.json(result);
       } catch (error) {
         next(error);
@@ -86,7 +86,10 @@ module.exports = {
 
           db.query(`delete from speakers where id=${req.params.id}`, (err, result) => {
             try {
-              if (err) throw err;
+              if (err) {
+                if (err.code === "ER_ROW_IS_REFERENCED_2") throw "Please clear speaker related fields first!";
+                throw err;
+              }
 
               fs.unlink(`./public/uploads/speakers/${photo}`, (err) => {
                 if (err) return console.log("Error during speaker photo removal!");

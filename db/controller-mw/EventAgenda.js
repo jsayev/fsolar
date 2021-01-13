@@ -10,7 +10,7 @@ module.exports = {
       try {
         if (err) throw err;
 
-        res.locals.agenda = result[0];
+        res.locals.agendaFile = result[0];
         next();
       } catch (error) {
         next(error);

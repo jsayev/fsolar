@@ -38,6 +38,11 @@
                                         placeholder="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
 nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat" required></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="videoLink"><span style="color:red">*</span>Videolink:</label>
+                                    <input type="text" class="form-control" id="videoLink" name="videoLink"
+                                        placeholder="ex: Cheniere" required>
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -52,7 +57,7 @@ nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat" required></
             <h2 class="text-center">Testimonials</h2>
         </div>
         <div class="col-4 offset-4">
-            <div id="response"></div>
+            <div id="actionResponse"></div>
         </div>
         <div class="col-12">
             <table class="table table-hover">
@@ -62,6 +67,7 @@ nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat" required></
                         <th scope="col">Speaker</th>
                         <th scope="col">Position</th>
                         <th scope="col">Company</th>
+                        <th scope="col">Videolink</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -72,6 +78,7 @@ nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat" required></
                         <td>{{fullname}}</td>
                         <td>{{position}}</td>
                         <td>{{company}}</td>
+                        <td><a href="{{videoLink}}" target="_blank">{{videoLink}}</a></td>
                         <td>
                             <button data-targetId="{{id}}" class="btn btn-warning viewBtn" data-toggle="modal"
                                 data-target="#viewModal">View</button>
