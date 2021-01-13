@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `attendees` (
   `logoFilename` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `conference_schedule_dates` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `conference_schedule_times` (
   KEY `conferenceScheduleDateID_to_conference_schedule_dates.id` (`conferenceScheduleDateID`),
   CONSTRAINT `conferenceScheduleDateID_to_conference_schedule_dates.id` FOREIGN KEY (`conferenceScheduleDateID`) REFERENCES `conference_schedule_dates` (`id`),
   CONSTRAINT `spekerID_to_speaker.id` FOREIGN KEY (`speakerID`) REFERENCES `speakers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `event_agenda` (
   `uploadDate` varchar(255) DEFAULT NULL,
   `originalName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `exhibitors` (
   `logoFilename` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `gallery` (
   `pictureFilename` varchar(255) NOT NULL,
   `dayOfTaken` tinyint(2) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `partners` (
   `logoFilename` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `speakers` (
   `photo` varchar(255) NOT NULL,
   `about` varchar(2000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `sponsors` (
   PRIMARY KEY (`id`),
   KEY `type_id_to_sponsor_type.id` (`typeID`) USING BTREE,
   CONSTRAINT `typeID_to_sponsor_type.id` FOREIGN KEY (`typeID`) REFERENCES `sponsor_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
   `email` char(255) NOT NULL,
   `date` char(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `summits` (
   `about` varchar(1000) NOT NULL,
   `videoLink` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `summit_files` (
   PRIMARY KEY (`id`),
   KEY `summitID_to_summits.id` (`summitID`),
   CONSTRAINT `summitID_to_summits.id` FOREIGN KEY (`summitID`) REFERENCES `summits` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `support_organizations` (
   `logoFilename` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -192,10 +192,11 @@ CREATE TABLE IF NOT EXISTS `testimonials` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `impression` varchar(2000) NOT NULL,
   `speakerID` int(11) unsigned NOT NULL,
+  `videoLink` varchar(999) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `speakerID_to_speakers.id` (`speakerID`),
   CONSTRAINT `speakerID_to_speakers.id` FOREIGN KEY (`speakerID`) REFERENCES `speakers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -208,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `virtual_conferences` (
   `description` varchar(1000) NOT NULL,
   `pictureFilename` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
