@@ -7,11 +7,11 @@ let didSuccess = false;
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const { speaker, impression } = e.target;
+  const { speaker, impression, videoLink } = e.target;
 
   fetch(endpoints.testimonial, {
     method: "post",
-    body: JSON.stringify({ impression: impression.value, speaker: speaker.value }),
+    body: JSON.stringify({ impression: impression.value, speaker: speaker.value, videoLink: videoLink.value }),
     headers: {
       "content-type": "application/json",
     },

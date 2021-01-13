@@ -8,7 +8,7 @@ deleteBtn.forEach((btn) => {
     fetch(endpoints.testimonial + `/${this.dataset.targetid}`, { method: "delete" })
       .then((res) => res.json())
       .then((res) => {
-        if (res.error) return renderResponseAlert(res, "response");
+        if (res.error) return renderResponseAlert(res, "actionResponse");
         location.href = location.pathname;
       })
       .catch(console.log);

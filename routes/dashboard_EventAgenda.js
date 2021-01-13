@@ -7,11 +7,11 @@ const router = require("express").Router();
 
 // URL: ~/dashboard/eventagenda
 router.get("/", isAuthenticated, EventAgenda.pickAll, (req, res, next) => {
-  const { agenda } = res.locals;
-  const renderUploadAgendaJS = !agenda;
+  const { agendaFile } = res.locals;
+  const renderUploadAgendaJS = !agendaFile;
   const renderRemoveAgendaJS = !renderUploadAgendaJS;
 
-  res.render(render.view, { ...render.options, agenda, renderRemoveAgendaJS, renderUploadAgendaJS, username: req.user.username });
+  res.render(render.view, { ...render.options, agendaFile, renderRemoveAgendaJS, renderUploadAgendaJS, username: req.user.username });
 });
 
 // URL: ~/dashboard/eventagenda

@@ -16,7 +16,7 @@ $("#changePasswordForm").submit(function (e) {
   })
     .then((res) => res.json())
     .then((res) => {
-      renderResponseAlert(res, "changePasswordResponse", this);
+      renderResponseAlert(res, "response", this);
     })
     .catch(console.log);
 });
